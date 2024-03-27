@@ -1,0 +1,173 @@
+.container{
+
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+td{
+    /* border: 1px solid black; */
+    padding: 5px;
+    border-spacing:5px;
+}
+
+/* tr{
+    border: 1px solid black;
+} */
+
+h2{
+    text-align: center;
+    font-size: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* table{
+    border: 1px solid black;
+} */
+
+
+.basicContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+    
+}
+
+.eduContainer{
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.workContainer{
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.langContainer{
+    margin: 10px;
+    padding: 30px;
+}
+
+
+.techContainer{
+    margin: 1%;
+    padding: 30px;
+}
+
+.referenceContainer{
+    margin: 10px;
+    padding: 10px;
+}
+
+.preference{
+    margin: 10px;
+    padding: 10px;
+}
+
+#submit {
+    display: block;
+    margin: auto;
+    padding: 6px;
+}
+
+#reset {
+    display: block;
+    margin: auto;
+    padding: 6px;
+}
+
+legend{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 900;
+}
+
+
+#error{
+    color: black;
+    display: block;
+    background-color: red;
+    text-align: center;
+    width: 200px;
+}
+
+
+#eduerr{
+    color: black;
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+}
+
+#langErr{
+    color: black;
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+
+}
+
+#skillErr{
+    color: black;
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+}
+
+#prefErr{
+    color: black;
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+}
+
+#workErr{
+    color: black;
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+}
+
+#success{
+    color: black;
+    background-color: green ;
+    text-align: center;
+    width: 300px;
+    margin-left: 40%;
+}
+
+
+.errorMessages{
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#add , #remove{
+    font-size: 16px;
+    height: 30px;
+    width: 40px;
+    padding: 3px;
+    margin: 5px;
+}
+
+#addref , #removeref{
+    font-size: 14px;
+    padding: 5px;
+    margin: 5px;
+    /* background-color: gray; */
+    border-radius: 6px;
+    border: 1px solid black;
+}

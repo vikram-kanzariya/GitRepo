@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/search/style.css">
+</head>
+<body>
+    <h2>Vikram Kanzariya</h2>
+
+    <div class="mainsearchbar" id="mainsearchbar">
+        <form action="/search" method="post">
+            <input type="text" id="id" name="id" placeholder="Enter ID...">
+            <input type="submit" value="GO" id="submit" name="submit">
+        </form>
+
+    </div>
+
+    <button id="show">Show More</button>
+
+    <div class="subsearch" id="subsearch">
+        <form action="">
+            <input type="text" id="fname" name="fname" placeholder="Enter FirstName...">
+            <input type="text" id="lname" name="lname" placeholder="Enter LastName...">
+            <input type="text" id="city" name="city" placeholder="Enter CityName...">
+            <input type="submit" value="GO" id="submit1" name="submit1">
+        </form>
+    </div>
+
+
+
+
+
+
+    <div class="container">
+        <table>
+            <tr>
+                <th >sid </th>
+
+                <th>fname</th>
+
+                <th>lname</th>
+
+                <th >rollNo</th>
+
+                <th>age</th>
+
+                <th>phoneNo</th> 
+
+                <th>address</th>
+
+                <th>city</th>
+
+                <th>gender</th>
+
+                <th>pincode</th>
+
+                <th>createdAt</th> 
+
+            </tr>
+
+
+            <% students.forEach((student) => { %>
+                <tr>
+                    <td ><%= student.sid %></td>
+                    <td><%= student.fname %></td>
+                    <td><%= student.lname %></td>
+                    <td><%= student.rollNo %></td>
+                    <td><%= student.age %></td>
+                    <td><%= student.phoneNo %></td>
+                    <td><%= student.address %></td>
+                    <td><%= student.city %></td>
+                    <td><%= student.gender %></td>
+                    <td><%= student.pincode %></td>
+                    <td><%= student.createdAt %></td> 
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+        
+
+
+    <% if (totalRecord > 0) { %>
+        <div class="btn">
+        
+            <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=1"> <<  </a> 
+    
+            <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=<%= page - 1 > 0? page - 1 : 1 %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>" > < </a>  
+    
+            <a class="disabled" href="/data?page=page"><%= page %></a>
+    
+            <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%=  page + 1 < lastPage ? page + 1 : lastPage %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>"> > </a>
+    
+            <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%= lastPage %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>"> >> </a> 
+        </div>
+    <% } %>
+    
+
+
+
+    <script>
+        let show = document.getElementById('show');
+        let subsearch = document.getElementById('subsearch');
+        let mainsearch = document.getElementById('mainsearchbar');
+
+        show.addEventListener('click' , function(){
+            // mainsearch.style.display = 'none'
+            subsearch.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

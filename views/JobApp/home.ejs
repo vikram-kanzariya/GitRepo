@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job_app_3</title>
+    <link rel="stylesheet" href="../public/JobApp/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Job Application Form-3</h2>
+
+        <form action="/send" method="post" name="jobapp" onsubmit="return ValidateForm()">
+            <div class="basicContainer">
+                <fieldset id="basicDetails">
+                <table>
+                        <legend>Basic Detail:</legend>
+                    <tr>
+                        <td>
+                            <label for="fname">First Name:</label>
+                            <input type="text" name="fname" id="fname" class="valid">
+                        </td>
+                        
+                        <td>
+                            <label for="lname">LastName: </label>
+                            <input type="text" name="lname" id="lname" class="valid">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="desg">Designation: </label>
+                            <input type="text" name="desg" id="desg" class="valid">
+                        </td> 
+
+                        <td>
+                            <label for="email">Email: </label>
+                            <input type="text" name="email" id="email" class="valid">                
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="add1">Address1: </label>
+                            <input type="text" name="add1" id="add1" class="valid">
+                        </td> 
+                        <td>
+                            <label for="add2">Address2: </label>
+                            <input type="text" name="add2" id="add2" class="valid">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="no">Number</label>
+                            <input type="text" name="no" id="no" class="valid">                
+                        </td> 
+                        <td>
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" class="valid">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="state">State: </label>
+                            <select name="state" id="state">
+                                <option value="select">Select</option>
+                                <option value="gujarat">Gujarat</option>
+                                <option value="goa">Goa</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="rajasthan">Rajasthan</option>
+                                <option value="punjab">Punjab</option>
+                                <option value="tn">TamilNadu</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <label for="rs">Relationship: </label>
+                            <select name="rs" id="rs" >
+                                <option value="select">select</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="divorsee">Divorsee</option>
+                                <option value="widow">Widow</option>
+                            </select>    
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="gender">Gender: </label>
+                            <input type="radio" name="gender" id="male" value="male">  <label for="male">Male</label>
+                            <input type="radio" name="gender" id="female" value="female"> <label for="female">Female</label>
+                            <input type="radio" name="gender" id="other" value="other"> <label for="ohter">Other</label>                
+                        </td> 
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="zip">Zip Code</label>
+                            <input type="text" name="zip" id="zip" placeholder="Enter ZipCode..." class="valid">
+                        </td>
+
+                        <td>
+                            <label for="dob">DOB: </label>
+                            <input type="text" name="dob" id="dob" class="valid" placeholder="mm-dd-yyyy">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="error"></p>
+            <div class="errorMessages"></div>
+
+            </div>
+
+            <hr>
+
+
+        <div class="eduContainer">
+            <fieldset id="educationDetail">
+                <table>
+                    <legend>Education Details:</legend>
+                    <tr>
+                        <td rowspan="2">
+                            <label for="ssc">SSC Result:</label>
+                            <br>
+                            
+                            <label for="ssc">Name of Board: </label>
+                            <input type="text" name="ssc" id="ssc" >
+                            
+                            <label for="py">Passing Year: </label>
+                            <input type="text" name="py1" id="py1">
+                            
+                            <label for="percentage">Percentage: </label>
+                            <input type="text" name="percentage1" id="percentage1">
+                            
+                            <hr>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="hsc">HSC/Diploma Result:</label>
+                            <br>
+                            
+                            <label for="hsc">Name of Board: </label>
+                            <input type="text" name="hsc" id="hsc">
+                            
+                        
+                            <label for="py">Passing Year: </label>
+                            <input type="text" name="py2" id="py2">
+                            
+                        
+                            <label for="percentage">Percentage: </label>
+                            <input type="text" name="percentage2" id="percentage2">
+                            
+                            <hr>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td rowspan="2">
+                            <label for="bechlor">Bechlor Degree:</label>
+                            <br>
+                            
+                            <label for="bechlor">course Name: </label>
+                            <select name="bechlor" id="bechlor">
+                                <option value="select">--Select--</option>
+                                <option value="BE">BE</option>
+                                <option value="BSC">BSC</option>
+                                <option value="BCA">BCA</option>
+                                <option value="BCOM">BCOM</option>
+                            </select>
+                            <!-- <input type="text" name="bechlor" id="bechlor"> -->
+
+                    
+                            <!-- <label for="university">University: </label>
+                            <input type="text" name="university1" id="be"> -->
+                            
+                        
+                            <label for="py">Passing Year: </label>
+                            <input type="text" name="py3" id="py3">
+                            
+                        
+                            <label for="percentage">Percentage: </label>
+                            <input type="text" name="percentage3" id="percentage3">
+                            
+                            <hr>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="master">master Degree:</label>
+                            <br>
+                            
+                            <label for="master">course Name: </label>
+                            <!-- <input type="text" name="master" id="master"> -->
+                            <select name="master" id="master">
+                                <option value="select">--Select--</option>
+                                <option value="ME">ME</option>
+                                <option value="MSC">MSC</option>
+                                <option value="MCA">MCA</option>
+                                <option value="MCOM">MCOM</option>
+                            </select>
+
+
+                    
+                            <!-- <label for="university">University: </label>
+                            <input type="text" name="university2" id="me"> -->
+                            
+                        
+                            <label for="py">Passing Year: </label>
+                            <input type="text" name="py4" id="py4">
+                            
+                        
+                            <label for="percentage">Percentage: </label>
+                            <input type="text" name="percentage4" id="percentage4">
+                            
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+                <p id="eduerr"></p>
+        </div>
+
+        <hr>
+
+
+        <div class="workContainer">
+            <fieldset id="workDetail">
+                <!-- <input type="text" value="+"> -->
+                <!-- <table> -->
+                    <legend>Work Experience: </legend>
+
+                    <button id="add">+</button>
+                    <button id="remove">-</button>
+
+                    <div class="companydetails">
+
+                  <div class="company">
+                    <table>
+
+                    <tr>
+                        <td>
+                            <label for="company">Company Name: </label>
+                            <!-- <input type="text" name="company1" id="company1"> -->
+                            <input type="text" name="company[]" id="company1">
+                
+                            <label for="designation">Designation: </label>
+                            <!-- <input type="text" name="designation1" id="desgination1"> -->
+                            <input type="text" name="designation[]" id="desgination1">
+                
+                            <label for="from">from</label>
+                            <!-- <input type="text" name="from1" id="from1"> -->
+                            <input type="text" name="from[]" id="from1">
+                
+                            <label for="to">to</label>
+                            <input type="text" name="to[]" id="to1">
+                            <!-- <input type="text" name="to1" id="to1"> -->
+                
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+                  </div>
+
+
+                  <div class="company">
+                    <table>
+                    <tr>
+                        <td>
+                            <label for="company">Company Name: </label>
+                            <!-- <input type="text" name="company2" id="company2"> -->
+                            <input type="text" name="company[]" id="company2">
+                
+                            <label for="designation">Designation: </label>
+                            <input type="text" name="designation[]" id="desgination2">
+                            <!-- <input type="text" name="designation2" id="desgination2"> -->
+                
+                            <label for="from">from</label>
+                            <input type="text" name="from[]" id="from2">
+                            <!-- <input type="text" name="from2" id="from2"> -->
+                
+                            <label for="to">to</label>
+                            <input type="text" name="to[]" id="to2">
+                            <!-- <input type="text" name="to2" id="to2"> -->
+                
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+                  </div>
+
+
+                  <div class="company">
+                   <table>
+                    <tr>
+                        <td>
+                            <label for="company">Company Name: </label>
+                            <input type="text" name="company[]" id="company3">
+                            <!-- <input type="text" name="company3" id="company3"> -->
+                
+                            <label for="designation">Designation: </label>
+                            <input type="text" name="designation[]" id="desgination3">
+                            <!-- <input type="text" name="designation3" id="desgination3"> -->
+                
+                            <label for="from">from</label>
+                            <input type="text" name="from[]" id="from3">
+                            <!-- <input type="text" name="from3" id="from3"> -->
+                
+                            <label for="to">to</label>
+                            <input type="text" name="to[]" id="to3">
+                            <!-- <input type="text" name="to3" id="to3"> -->
+                
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+                  </div>
+
+
+                </div>
+
+                  
+            <!-- </table> -->
+            </fieldset>
+
+            <p id="workErr"></p>
+
+        </div>
+
+
+                <hr>
+
+        <div class="langContainer">
+            <fieldset id="langDetail">
+                <table>
+                    <legend>Language Known</legend>
+
+                    <tr>
+                        <td rowspan="3">
+                            <label for="hindi">Hindi</label>
+                            <input type="checkbox" name="hindi" value="hindi" id="hindi">
+                            <p class="err"></p>
+    
+                            <label for="hindi">Read</label>
+                            <input type="checkbox" name="hindiLang" value="read" id="read1">
+    
+                            <label for="hindi">Write</label>
+                            <input type="checkbox" name="hindiLang" value="write" id="write1">
+    
+                            <label for="hindi">Speak</label>
+                            <input type="checkbox" name="hindiLang" value="speak" id="speak1">
+    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td rowspan="2">
+                            <label for="english">English</label>
+                            <input type="checkbox" name="english" value="english" id="english">
+                    
+                            <label for="english">Read</label>
+                            <input type="checkbox" name="englishLang" value="read" id="read2">
+                    
+                            <label for="english">Write</label>
+                            <input type="checkbox" name="englishLang" value="write" id="write2">
+                    
+                            <label for="english">Speak</label>
+                            <input type="checkbox" name="englishLang" value="speak" id="speak2">
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <label for="gujarati">Gujarati</label>
+                            <input type="checkbox" name="gujarati" value="gujarati" id="gujarati">
+                    
+                            <label for="gujarati">Read</label>
+                            <input type="checkbox" name="gujaratiLang" value="read" id="read3">
+                    
+                            <label for="gujarati">Write</label>
+                            <input type="checkbox" name="gujaratiLang" value="write" id="write3">
+                    
+                            <label for="gujarati">Speak</label>
+                            <input type="checkbox" name="gujaratiLang" value="speak" id="speak3">
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="langErr"></p>
+
+        </div>
+
+            <hr>
+
+        <div class="techContainer">
+            <fieldset id="techDetail">
+                <table>
+                    <legend>Technologies You Know</legend>
+
+                    <tr>
+                        <td rowspan="2">
+                            <input type="checkbox" name="php1" value="php" id="php">
+                            <label for="php">PHP</label>
+                            
+                            <input type="radio" name="phptech" value="beginer">  
+                            <label for="php">beginer</label>
+                    
+                            <input type="radio" name="phptech" value="mediator">  
+                            <label for="php">mediator</label>
+                    
+                            <input type="radio" name="phptech" value="expert">  
+                            <label for="php">expert</label>
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td >
+                            <input type="checkbox" name="mysql1" value="mysql" id="mysql">
+                            <label for="mysql">MySql</label>
+                            
+                            <input type="radio" name="mysqltech" value="beginer">  
+                            <label for="mysql">beginer</label>
+                    
+                            <input type="radio" name="mysqltech" value="mediator">  
+                            <label for="mysql">mediator</label>
+                    
+                            <input type="radio" name="mysqltech" value="expert">  
+                            <label for="mysql">expert</label>
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td rowspan="2">
+                            <input type="checkbox" name="laravel1" value="laravel" id="laravel">
+                            <label for="laravel">Laravel</label>
+                            
+                            <input type="radio" name="laraveltech" value="beginer">  
+                            <label for="laravel">beginer</label>
+                    
+                            <input type="radio" name="laraveltech" value="mediator">  
+                            <label for="laravel">mediator</label>
+                    
+                            <input type="radio" name="laraveltech" value="expert">  
+                            <label for="laravel">expert</label>
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="oracle1" value="oracle" id="oracle">
+                            <label for="oracle">Oracle</label>
+                            
+                            <input type="radio" name="oracletech" value="beginer">  
+                            <label for="oracle">beginer</label>
+                    
+                            <input type="radio" name="oracletech" value="mediator">  
+                            <label for="oracle">mediator</label>
+                    
+                            <input type="radio" name="oracletech" value="expert">  
+                            <label for="orac'">expert</label>
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <P id="skillErr"></P>
+
+        </div>
+
+        <hr>
+
+
+
+        <div class="referenceContainer">
+            <fieldset id="referenceDetail">
+                    <legend>Reference Contact:</legend>
+
+                    <button id="addref">Add</button>
+                    <button id="removeref">Remove</button>
+
+                <div class="ref-data">
+                    <div class="reference">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <label for="name">Name: </label>
+                                    <input type="text" name="name[]" id="name1">
+                                    <!-- <input type="text" name="name1" id="name1"> -->
+                            
+                                    <label for="contact">Contact Number: </label>
+                                    <input type="text" class="contact" name="contact[]" id="contact1">
+                                    <!-- <input type="text" class="contact" name="contact1" id="contact1"> -->
+                            
+                                    <label for="relation">Relation: </label>
+                                    <input type="text" name="relation[]" id="relation1">
+                                    <!-- <input type="text" name="relation1" id="relation1"> -->
+                            
+                                    <br><br>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="reference">
+                <table>
+                    <tr>
+                        <td colspan="1">
+                            <label for="name">Name: </label>
+                            <input type="text" name="name[]" id="name2">
+                            <!-- <input type="text" name="name2" id="name2"> -->
+                    
+                            <label for="contact">Contact Number: </label>
+                            <input type="text" class="contact" name="contact[]" id="contact2">
+                            <!-- <input type="text" class="contact" name="contact2" id="contact2"> -->
+                    
+                            <label for="relation">Relation: </label>
+                            <input type="text" name="relation[]" id="relation2">
+                            <!-- <input type="text" name="relation2" id="relation2"> -->
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+                </table>
+
+                </div>
+
+            </div>
+                
+            </fieldset>
+            <p id="contactErr"></p>
+        </div>
+
+        <hr>
+
+
+
+        <div class="preferenceContainer">
+            <fieldset id="preferenceDetail">
+                <table>
+                    <legend>Preference:</legend>
+
+                    <tr>
+                        <td rowspan="1" colspan="1">
+                            <label for="location">Prefered Location</label>
+                            <input type="text" name="location" id="location">
+                    
+                            <br><br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td rowspan="3" colspan="1">
+                            <label for="np">Notice Period: </label>
+                            <input type="text" name="np" id="np">
+                    
+                            <label for="expected">Expected CTC: </label>
+                            <input type="text" name="expected" id="expected">
+                    
+                            <label for="curr">Current CTC: </label>
+                            <input type="text" name="curr" id="curr">
+                    
+                            <!-- <br><br> -->
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td  rowspan="1">
+                            <label for="dept">Department: </label>
+                            <select name="dept" id="dept">
+                                <option value="select">select</option>
+                                <option value="development">Development</option>
+                                <option value="design">Design</option>
+                                <option value="marketing">Marketing</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <p id="prefErr"></p>
+                </table>
+            </fieldset>
+
+        </div>
+
+        <br>
+
+        <p id="success"></p>
+        <input type="submit" name="submit" id="submit" value="submit">
+        <br>
+        <input type="reset" value="reset" name="reset" id="reset">
+
+        </form>
+    </div>
+
+
+    <!-- <script src="../public/clientside.js"></script> -->
+   <script src="../public/form.js"></script>
+   <script src="../public/add.js"></script>
+
+</body>
+</html>

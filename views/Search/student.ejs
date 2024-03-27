@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      
+      *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+table{
+    margin: 10px;
+}
+
+table tr th{
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+table tr td{
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    margin:15px 5px;
+    padding: 5px;
+    font-size: 18px;
+    background-color: gray;
+    border: 1px solid black;
+    height: 30px;
+    width: 40px;
+    text-align: center;
+}
+
+.btn{
+    margin: 15px auto;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    margin: 15px;
+}
+
+.disabled{
+    cursor:not-allowed;
+    pointer-events: none;
+    color: green;
+}
+
+svg{
+    height: 12px;
+    width: 12px;
+}
+
+#mainsearchbar{
+    height: 100px;
+    /* border: 1px solid black; */
+    margin: 15px 40%;
+    text-align: center;
+}
+
+#show{
+    margin: 15px 45%;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 8px;
+    font-size: 14px;
+    /* border: 1px solid black; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#subsearch{
+    height: 100px;
+    margin: 15px 40%;
+    display: none;
+    border: 1px solid black;
+    /* text-align: center; */
+}
+
+#submit , #submit1{
+    height: 30px;
+    width: 50px;
+}
+
+    </style>
+</head>
+<body>
+    <h2>Vikram Kanzariya</h2>
+
+
+    <div class="mainsearchbar" id="mainsearchbar">
+        <form action="/searchdata" method="post">
+            <input type="text" id="id" name="id" placeholder="Enter ID..." tabindex="1">
+            <input type="submit" value="GO" id="submit" name="submit" tabindex="2">
+        </form>
+
+    </div>
+
+    <button id="show" tabindex="3">Show More</button>
+
+    <div class="subsearch" id="subsearch">
+        <form action="/searchdata" method="post">
+            <!-- <input type="text" id="id" name="id" placeholder="Enter ID..."> -->
+
+            <input type="text" id="fname" name="fname" placeholder="Enter FirstName..." tabindex="4">
+            <input type="text" id="lname" name="lname" placeholder="Enter LastName..." tabindex="5">
+            <input type="text" id="city" name="city" placeholder="Enter city..." tabindex="6">
+            <input type="submit" value="GO" id="submit1" name="submit1" tabindex="7">
+        </form>
+    </div>
+
+
+
+
+    <div class="container">
+        <table>
+            <tr>
+                <th >sid </th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>rollNo</th>
+                <th>age</th>
+                <th>phoneNo</th> 
+                <th>address</th>
+                <th>city</th>
+                <th>gender</th>
+                <th>pincode</th>
+                <th>createdAt</th> 
+            </tr>
+
+
+            <% students.forEach((student) => { %>
+                <tr>
+                    <td ><%= student.sid %></td>
+                    <td><%= student.fname %></td>
+                    <td><%= student.lname %></td>
+                    <td><%= student.rollNo %></td>
+                    <td><%= student.age %></td>
+                    <td><%= student.phoneNo %></td>
+                    <td><%= student.address %></td>
+                    <td><%= student.city %></td>
+                    <td><%= student.gender %></td>
+                    <td><%= student.pincode %></td>
+                    <td><%= student.createdAt %></td> 
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+        
+  
+     
+    <% if (students.totalRecord >= 50) { %>
+        <div class="btn">
+            <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/searchdata?page=1"> <<  </a> 
+    
+            <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/searchdata?page=<%= page - 1 > 0? page - 1 : 1 %>" > < </a>  
+    
+            <a class="disabled" href="/searchdata?page=page"><%= page %></a>
+    
+            <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/searchdata?page=<%=  page + 1 < lastPage ? page + 1 : lastPage %>"> > </a>
+    
+            <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/searchdata?page=<%= lastPage %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>"> >> </a> 
+        </div>
+    
+    <% } else { %> 
+            <!-- <tr><td>404-Page Not found</td></tr> -->
+        <% } %>
+    <script>
+
+        let show = document.getElementById('show');
+        let subsearch = document.getElementById('subsearch');
+        let mainsearch = document.getElementById('mainsearchbar');
+
+        show.addEventListener("click" , function(){
+            // alert("hi")
+            mainsearchbar.style.display = 'none';
+            subsearch.style.display = 'block';
+        });
+
+    </script>
+
+</body>
+</html>

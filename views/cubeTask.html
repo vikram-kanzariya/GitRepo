@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KuKu-Cube Game</title>
+    <!-- <link rel="stylesheet" href="cubetask.css"> -->
+    <style>
+    *{
+        margin:  0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+    background-color:lightblue
+    }
+
+    .nav p,h3{ 
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav p{
+        display: inline-block;
+        margin-left: 20px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+    .nav h3{
+        float: left;
+        margin-left: 10%;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 12%;
+    }
+
+    table tr td{
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 6px;
+    }
+
+    .data{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+    }
+
+    button{
+    border-radius: 12px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 3px solid black;
+    color:blue;
+    background-color: lightgreen;
+    margin-top: 20%;
+    margin-right: 40%;
+    text-align: center;
+    padding: 20px;
+    }
+
+    #timer , #score , #result{
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 24px;
+        padding: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h3>Vikram Kanzariya</h3>
+        <p>Id:24DEV085</p>
+    </div>   
+
+    <div class="data">
+        <p class="timer" id="timer" ></p>
+        <p class="score" id="score"></p>
+        <div class="result" id="result"></div>
+        <button id="play">Play Game</button>
+    </div>
+
+
+    <div class="container">
+        <table id="table" >
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+ 
+    <!-- <script src="task2.js"></script> -->
+    <script>
+        var table = document.getElementById('table');
+        var score = document.getElementById('score');
+        var timer = document.getElementById('timer');
+        var result = document.getElementById('result');
+        var play = document.getElementById('play');
+
+
+        table.style.display = 'none';
+        score.style.display = 'none';
+
+        play.addEventListener('click' , function(){
+            table.style.display = 'block';
+            timer.style.display = 'block';
+            score.style.display = 'block';
+            play.style.display = 'none';
+
+            // Setting Time Interval 
+            setInterval(() => {
+                if(timer.value > 0 ){
+                    timer.innerHTML =  'Timer: ' +  --timer.value;
+                }
+
+            //  setting Final Score of User
+                if(timer.value == 0){
+                    result.innerHTML = 'Final Score is: ' + score.value;
+                    timer.value--;
+
+                    play.style.display = 'none';
+                    alert('Game Over...');
+
+                }
+            }, 1000);
+        });
+
+        score.value = 0;
+        timer.value = 60;
+
+
+        // Adding Rows and Columns till table size is <= 9;
+        table.addEventListener("click" , function(){
+            if(table.rows.length < 9){
+                addRowCol();
+                RandomColor();
+            }
+            RandomColor();
+        })
+
+        function addRowCol(){
+            // Adding Rows To Table
+            var table = document.getElementById('table');
+            let colSize = table.rows[0].cells.length;
+            let tr = document.createElement('tr');
+
+            for(let i=0 ; i<colSize ; i++){
+                let td = document.createElement('td');
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+
+
+            // Adding Columns to Table
+            let tRow = document.querySelectorAll('tr');
+            let RowSize = tRow.length
+            
+            for(let i=0 ; i<RowSize ; i++){
+                let tdata = document.createElement('td');
+                tRow[i].appendChild(tdata);
+            }
+        }
+
+        function RandomColor(){
+            // Generating Random Color
+            const td = document.querySelectorAll('td');
+            let column = Math.floor(Math.random()*(td.length));
+
+            let x = Math.floor(Math.random()*256);
+            let y = Math.floor(Math.random()*256);
+            let z = Math.floor(Math.random()*256);
+
+            var color = `rgb(${x}, ${y}, ${z})`;  // for generating Random Color
+            var Lightcolor = `rgba(${x}, ${y}, ${z}, 0.6)`; // for generating random LightColor
+
+            
+            for(var i=0  ; i<td.length; i++){
+                td[i].style.backgroundColor = color;
+            }
+            td[column].style.backgroundColor = Lightcolor;
+
+
+            // For Adding Score if selected Cell has LightColor
+            for(let x=0; x<td.length ; x++){
+                td[x].addEventListener('click' , function(){
+                    if(td[x].style.backgroundColor === Lightcolor && timer.value > 0){
+                        score.value++;
+                    }
+                })
+                score.innerHTML = 'score: ' +  score.value;
+                // timer.value--;
+            }
+        }
+        RandomColor();
+    </script>
+</body>
+</html>

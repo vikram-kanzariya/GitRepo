@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Method</title>
+    <style>
+        .nav {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .nav p{
+            margin-top: 10px;
+        }
+
+        #output{
+            width: 300px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            background-color: cadetblue;
+        }
+
+        #output:hover{
+            background-color: orange;
+        }
+
+        input{
+            font-size: 18px;
+            text-align: center;
+            background-color: lightgray;
+            border-radius: 6px;
+        }
+
+        .container{
+            display: block;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+        }
+
+        button{
+            background-color: lightgray;
+            color: black;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 2px solid black;
+            margin: 20px;
+        }
+        
+        button:hover{
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <h3>Vikram Kanzariya</h3>
+        <p>Id:24DEV085</p>
+    </div>   
+
+    <div class="container">
+        <h2>Sorting Methods</h2>
+
+        <input type="text" name="sorting" id="val" placeholder="Enter Values...">
+
+        <button id="bubble" value="">Bubble Sort</button>
+        <button id="selection" value="">Selection Sort</button>
+        <button id="insertion" value="">Insertion Sort</button>
+    </div>
+
+    <button id="clar">CLEAR</button>
+    <br><br>
+
+    <label for="" style="font-weight: bold;">Outputs: </label>
+    <br><br>
+
+    <div id="output"></div>
+
+
+    <!-- <script src="index.js"></script> -->
+
+    <script>
+        var bubble = document.getElementById('bubble');
+        var selection = document.getElementById('selection');
+        var insertion = document.getElementById('insertion');
+        var quick = document.getElementById('quick');
+        var output = document.getElementById('output');
+        var clr = document.getElementById('clr');
+
+
+        bubble.addEventListener('click' , function(){
+            var input1 = document.getElementById('val').value;
+            const arr1 = input1.split(",");
+
+
+            // for(let i=0 ; i<arr1.length ; i++){
+            //     arr1[i] = +arr1[i];
+            // }
+
+            // Bubble Sort
+            for(let i=0 ; i<arr1.length ; i++){
+                for(let j=0 ; j<(arr1.length - i - 1 ) ; j++){
+                    if(arr1[j] > arr1[j+1]){
+                        let tmp = arr1[j];
+                        arr1[j] = arr1[j+1];
+                        arr1[j+1] = tmp;
+                    }
+                }
+            }
+        output.innerHTML = arr1 + " "; 
+        });
+
+
+
+        selection.addEventListener('click' , function(){
+            var input1 = document.getElementById('val').value;
+
+            // Splitting Array by Comma
+            const arr1 = input1.split(",");
+
+            // Converting ArrayString into Number 
+            for(let i=0 ; i<arr1.length ; i++){
+                arr1[i] = +arr1[i];
+            }
+
+            // Selection Sort
+            let min;
+            for(let i=0 ; i<arr1.length ; i++){
+                min = i;
+
+                for(let j=i+1 ; j<arr1.length ; j++){
+                    if(arr1[min] > arr1[j]){
+                        min = j;
+                    }
+                }
+
+            let tmp = arr1[min];
+            arr1[min] = arr1[i];
+            arr1[i] = tmp;
+                
+            }
+            output.innerHTML = arr1 + " "; 
+        });
+
+
+        insertion.addEventListener('click' , () => {
+            var input1 = document.getElementById('val').value;
+            const arr1 = input1.split(",");
+
+            for(let i=0 ; i<arr1.length ; i++){
+                arr1[i] = +arr1[i];
+            }
+        
+
+            // Insertion Sort
+            let j , key;
+            for(let i=1 ; i<arr1.length ; i++){
+                key = arr1[i];
+                j = i - 1;
+            
+                while(j >= 0 && arr1[j] > key){
+                    arr1[j+1] = arr1[j];
+                    j = j - 1;
+                }
+                arr1[j+1] = key;
+            }
+            output.innerHTML = arr1;
+        });
+
+
+
+
+
+        // let arr1 = [6 , 7 , 3 , 8 , 11 , 13 , 5 , 43 , 25];
+        // let arr1 = ['BMW' , 'THAR' ,'FORD' , 'SUZUKI' , 'HARRIER' , 'NEXON'];
+
+        // console.log(arr1);
+        // console.log(arr2);
+
+
+        // Bubble Sort for Numbers and Strings
+
+        // let arr1 = [];
+
+        // for(let i=0 ; i<5 ; i++){
+        //     arr1[i] = prompt('Enter Element: ' + (i+1));
+        // }
+        // console.log(arr1);  
+        // for(let i=0 ; i<arr1.length ; i++){
+        //     for(let j=0 ; j<(arr1.length - i - 1 ); j++){
+        //         if(arr1[j] > arr1[j+1]){
+        //             let tmp = arr1[j];
+        //             arr1[j] = arr1[j+1];
+        //             arr1[j+1] = tmp;
+        //         }
+        //     }
+        // }
+
+        // for(let i=0 ; i<arr1.length ;   i++){
+        //     document.write(arr1[i] + " ");
+        // }
+        // console.log(arr1);  
+
+
+        // -------------------------------------
+        //                 0 1 2 3 4
+        // Selection Sort: 6 4 2 7 3 for Numbers and strings
+
+        // for(let i=0 ; i<5 ; i++){
+        //     arr1[i] = prompt('Enter Element: ' + (i+1));
+        // }
+
+        // let min;
+        // for(let i=0 ; i<arr1.length ; i++){
+        //     min = i;
+
+        //     for(let j=i+1 ; j<arr1.length ; j++){
+        //         if(arr1[min] > arr1[j]){
+        //             min = j;
+        //         }
+        //     }
+
+        //    let tmp = arr1[min];
+        //    arr1[min] = arr1[i];
+        //    arr1[i] = tmp;
+            
+        // }
+
+        // for(let i=0 ; i<arr1.length ; i++){
+        //     document.write(arr1[i] + " ");
+        // }
+        // console.log(arr1);
+
+
+        // -------------------------------------------
+
+        // Insertion Sort:  6 4 2 7 3
+        //                  0 1 2 3 4
+        //                  j i
+        // let j , key;
+        // for(let i=1 ; i<arr1.length ; i++){
+        //     key = arr1[i];
+        //     j = i - 1;
+        
+        //     while(j >= 0 && arr1[j] > key){
+        //         arr1[j+1] = arr1[j];
+        //         j = j - 1;
+        //     }
+        //     arr1[j+1] = key;
+        // }
+        // console.log(arr1);
+
+
+
+
+
+        // ----------------------------------------
+
+        // Quick Sort
+        function quickSort(arr , low , high){
+            if(low < high){
+
+                let p = partition(arr , low , high);
+                
+                quickSort(arr , low , p-1);
+                quickSort(arr , p+1 , high);
+            }
+        }
+
+        function partition(arr , start , end){
+            let pivot = arr[start];  //First Element
+            let cnt = 0;
+
+            for(let i=start+1 ; i<=end ; i++){  // Counting Number of Elements less than pivotElement
+                if(arr[i] <= pivot){
+                    cnt++;
+                }
+            }
+            let pivotIndex = start + cnt;
+
+            let tmp = arr[pivotIndex];
+            arr[pivotIndex] = arr[start];
+            arr[start] = tmp;
+
+
+            let i = start , j = end;
+            while(i < pivotIndex && j > pivotIndex){
+                while(arr[i] < pivot){
+                    i++;
+                }
+
+                while(arr[j] > pivot){
+                    j--;
+                }
+
+                if(i < pivotIndex && j > pivotIndex){
+                    let tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                    i++ , j--;
+                }
+            }
+            return pivotIndex;
+        }
+
+        let arr = [9, 3, 4, 2, 1, 8 ];
+
+        let n = arr.length;
+
+        // quickSort(arr , 0 , n-1);
+
+        // for(let i=0 ; i<n ; i++){
+        //     console.log(arr[i]);
+        // }
+    </script>
+</body>
+</html>

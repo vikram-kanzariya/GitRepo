@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Row-Column</title>
+    <!-- <link rel="stylesheet" href="tabletask.css"> -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .nav{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+
+.nav p{
+    display: inline-block;
+    /* float: right; */
+    /* margin-right: 10px; */
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.nav h3{
+    float: left;
+    margin-left: 10%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+table tr td{
+    border: 1px solid black;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+button{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 15px 20px;
+    border-radius: 6px;
+    background-color: lightgray;
+}
+
+
+table tr:nth-child(odd) td:nth-child(even){
+    background-color: gray;
+}
+
+table tr:nth-child(even) td:nth-child(odd){
+    background-color: gray;
+}
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <h3>Vikram Kanzariya</h3>
+        <p>Id:24DEV085</p>
+    </div>   
+
+    <div class="container">
+
+        <button id="addCol" onclick="addCol()">+</button>
+        <button id="removeCol" onclick="delCol()">-</button>
+        
+        <table id="table">
+            <tr>  
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+            </tr> 
+
+        </table>
+        <button id="addRow"  onclick="addRow()">+</button>
+        <button id="removeRow" onclick="delRow(this)">-</button>
+    </div>
+                                                                                                
+    <!-- <script src="index.js"></script> -->
+
+    <script>
+        var table = document.getElementById('table');
+
+    function addRow(){
+        let colSize = table.rows[0].cells.length;
+        let tr = document.createElement('tr');
+
+        for(i=0 ; i<colSize ; i++){
+            let td = document.createElement('td');
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+
+    function delRow(){
+
+        let tr = document.querySelectorAll('tr');
+        let rowSize = table.rows.length;
+
+        if(rowSize > 2){
+            tr[rowSize - 1].remove();
+        }
+        else{
+            alert('Can not remove More Rows...');
+        }
+    }
+
+    function addCol(){
+        let tr = document.querySelectorAll('tr');
+        let rowSize = table.rows.length;
+
+        for(i=0 ; i<rowSize ; i++){
+            let td = document.createElement('td');
+            tr[i].appendChild(td);
+        }
+    }
+
+    function delCol(){
+        let colSize = table.rows[0].cells.length;
+        let rowSize = table.rows.length;
+
+        let tr = document.querySelectorAll('tr');
+
+        if(colSize > 2){
+            for(i=0 ; i<tr.length ; i++){
+                tr[i].cells[colSize - 1].remove();
+            }
+
+        }
+        else{
+            alert('Can not Remove more Columns...');
+        }
+    }
+    </script>
+</body>
+</html>

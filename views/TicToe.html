@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-Toe Game</title>
+    <!-- <link rel="stylesheet" href="tictoe.css"> -->
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    .nav {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .nav p{
+        margin-top: 10px;
+    }
+
+    .container{
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* border: 2px solid black; */
+    }
+
+
+    table{
+        border: 2px solid black;
+    }
+    table td{
+        border: 3px solid black;
+    }
+
+    table td{
+        padding: 20px;
+    }
+
+    button{
+        border: none;
+        border-radius: 6px;
+        /* background-color: chocolate; */
+        padding: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+    }
+
+    #resetGame , #newGame {
+        border: 3px solid black;
+        display: flex;
+        text-align: center;
+        margin: auto;
+    }
+
+    #newGame{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #resetGame{
+        margin-top: 20px;
+    }
+
+    /* .hide{
+        display: none;
+    } */
+
+    #msg{
+        /* height: 100px; */
+        /* border: 2px solid black; */
+        display: block;
+        margin-left: 45%;
+        margin-top: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h3>Vikram Kanzariya</h3>
+        <p>Id:24DEV085</p>
+    </div>   
+
+    <div class="msgContainer">
+        <button id="newGame">New Game</button>
+        <p id="msg"></p>
+    </div>
+
+    <div class="container">
+     
+
+        <table id="table">
+            <tr>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+            </tr>
+
+            <tr>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+            </tr>
+
+            <tr>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+                <td> <button id="btn"></button> </td>
+            </tr>
+        </table>
+
+    </div>
+
+  
+    <!-- <script src="tictoe.js"></script> -->
+
+    <script>
+
+        let btns = document.querySelectorAll('#btn');
+        let message = document.getElementById('msg');
+        let newGame = document.getElementById('newGame');
+
+        const winPossibility = [
+            [0,1,2] , [0,3,6] , [0,4,8] , [2,5,8] , 
+            [2,4,6] , [1,4,7] , [3,4,5] , [6,7,8], 
+        ];
+
+        let turnX = true;
+        let count = 0;
+
+        btns.forEach((btn) => {
+            btn.addEventListener('click' , function(){
+                if(turnX){
+                    btn.innerHTML = 'X';
+                    turnX = false;
+                }
+                else{
+                    btn.innerHTML = 'O';
+                    turnX = true;
+                }
+                btn.disabled = true;
+                count++;
+
+                let isWinner = chekwin();
+
+                if(count === 9 && !isWinner){
+                    // alert('game is draw');
+                    // console.log('game is draw');
+                    drawGame();
+                    disableBoxes();
+                }
+                
+            });
+        });
+
+
+        const chekwin = () => {
+            for(let pattern of winPossibility){
+                var pos1Val = btns[pattern[0]].innerHTML;
+                var pos2Val = btns[pattern[1]].innerHTML;
+                var pos3Val = btns[pattern[2]].innerHTML;
+
+
+                if(pos1Val !== "" && pos2Val !== "" && pos3Val !== ""){
+                    if(pos1Val === pos2Val && pos2Val === pos3Val){
+                        // message.innerText = pos1Val;
+                        showWinner(pos1Val);
+                        return true;
+                    }
+                }
+            }
+        }
+
+        const resetgame = (btn) => {
+        for(let btn of btns){
+            turnX = true;
+            count = 0;
+            btn.innerHTML = "";
+            message.innerHTML = "";
+            enableBoxes();
+        }
+        }
+
+        const enableBoxes = () => {
+            for(let btn of btns){
+                btn.disabled = false;
+            }
+        }
+
+        const disableBoxes = () => {
+            for(let btn of btns){
+                btn.disabled = true;
+            }
+        }
+
+
+        const showWinner = (win) => {
+            message.innerHTML = `winner is: ${win}`;
+            disableBoxes();
+        }
+
+        const drawGame = () => {
+            // alert('Game is Draw...');
+            message.innerHTML = `No winner Found , Game is Draw...`;
+            disableBoxes();
+        }
+
+        newGame.addEventListener('click' , resetgame);
+    </script>
+
+</body>
+</html>
