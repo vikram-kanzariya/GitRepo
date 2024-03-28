@@ -2,7 +2,6 @@ const express = require('express');
 
 const { getForm , getUser ,  geteditForm , createUser , updateUser} = require('../controllers/JobApp/usercontroller');
 
-
 const router = express.Router();
 
 router.route("/send")

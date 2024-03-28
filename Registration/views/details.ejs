@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h3{
+            text-align: center;
+            /* margin: 0 auto; */
+            margin-top: 20px;
+            /* margin-left: auto; */
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        table{
+            margin-top: 30px;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        table th{
+            background-color: lightgray;
+            text-align: center;
+            padding: 5px;
+
+        }
+        table td{
+            background-color: lightblue;
+            text-align: center;
+            padding: 10px;
+        }
+
+        p{
+            margin-top: 20px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: lightgreen;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        #logout{
+            margin-left: 20%;
+            font-size: 14px;
+            padding: 5px;
+            margin-top: 10%;
+            font-weight: bold;
+            background-color: lightgray;
+            /* border: 1px solid black; */
+            border-radius: 10px;
+        }
+
+        #logout:hover{
+            background-color: crimson;
+        }
+    </style>
+</head>
+<body>
+    <h3>Vikram Kanzariya</h3>
+
+    <input type="button" name="logout" id="logout" value="LOGOUT">
+
+    <div class="container">
+
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>E-mail</th>
+            </tr>
+
+
+            <tr>
+                <td><%= user.uid %></td>
+                <td><%= user.fname %></td>
+                <td><%= user.lname %></td>
+                <td><%= user.email %></td>
+            </tr>
+     
+        </table>
+
+        <p>Your Login is Successfull</p>
+    </div>
+
+    
+    <script>
+        let logout = document.getElementById('logout');
+
+        logout.addEventListener('click' , async function(){
+            localStorage.removeItem('token');
+
+
+            let data = await fetch("http://localhost:8000/logout" , {
+                method:"GET",
+                headers:{'Content-Type' : 'application/json'}
+            });
+            
+            data = await data.json();
+
+            if(data.success){
+                window.location.href = "http://localhost:8000/login";
+            }
+        });
+    </script>
+</body>
+</html>

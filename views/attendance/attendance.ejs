@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="../../public/attendance/style.css">
+
+</head>
+<body>
+    <h2>Vikram Kanzariya</h2>
+
+    <div class="dropDown">
+        <label for="month">Select Month: </label>
+
+        <select name="month" id="month">
+            <option data-month="<%= month %>" value="2023-12-31">Dec2023</option>
+            <option data-month="<%= month %>" value="2024-01-31">Jan2024</option>
+            <option data-month="<%= month %>" value="2024-02-29">Feb2024</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <table>
+            <tr>
+                <th>Sid</th>
+                <th>Name</th>
+                <th>PresentDays</th>
+                <th>% of Presntdays</th>
+               
+            </tr>
+
+            <% students.forEach((student) => { %>
+                <tr>
+                    <td ><%= student.sid %></td>
+                    <td><%= student.name %></td>
+                    <td><%= student.present %></td>
+                    <td><%= (student.present*100 / days ).toFixed(2)   %></td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>    
+    </ul>
+
+
+    <!-- Pagination -->
+<div class="btn">
+    <a class="<%= page <= 1 ? 'disabled' : '!disabled' %>" href="/attendance?page=1"> <<  </a> 
+    
+    <a class="<%= page <= 1 ? 'disabled' : '!disabled' %>"  href="/attendance?page=<%= page - 1 > 0 ? page - 1 : 1 %><%= filter !== '2023-12-31' ? '&filter='+filter :""%>" > < </a>  
+
+    <a class="disabled" href="/attendance?page=page"><%= page %></a>
+
+    <a class="<%= page >= lastPage ? 'disabled' : '' %>"
+        href="/attendance?page=<%=  page + 1 < lastPage ? page + 1 : lastPage %><%= filter !== '2023-12-31' ? '&filter='+filter :""%>"> > </a>  
+
+    <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/attendance?page=<%= lastPage %><%= filter !== '2023-12-31' ? '&filter='+filter :""%>"> >> </a>  
+</div>
+
+    <script>
+        let opt = document.getElementById('month');
+        let options = opt.options; //Gives array of Options in select Tag
+
+        opt.addEventListener("change" , async()=>{
+            window.location.href = window.location.origin + window.location.pathname + `?page=1&filter=${opt.value}`;
+        });
+
+        for(let i=0 ; i<options.length ; i++){
+            if(Number(options[i].value.split("-")[1]) === Number(options[i].dataset.month)){
+                options[i].selected = true;
+                break;
+            }
+        }
+    </script>
+    
+</body>
+</html>
+
+
+
+

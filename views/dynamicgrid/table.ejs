@@ -1,0 +1,15 @@
+<table>
+    <tr class="header">
+        <% for( let keys in data[0] ) { %>
+            <td> <%= keys %></td>
+        <% } %>
+    </tr>
+
+    <% data.map((student) => { %>
+        <tr>
+            <% for(  let keys in student ) { %>
+                <td><%= student[keys] %></td>
+            <% } %>
+        </tr>
+    <% }) %>
+</table>

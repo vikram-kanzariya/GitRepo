@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+      *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+table{
+    margin: 10px;
+}
+
+table tr th{
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+table tr td{
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    margin:15px 5px;
+    padding: 5px;
+    font-size: 18px;
+    background-color: gray;
+    border: 1px solid black;
+    height: 30px;
+    width: 40px;
+    text-align: center;
+}
+
+.btn{
+    margin: 15px auto;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    margin: 15px;
+}
+
+.disabled{
+    cursor:not-allowed;
+    pointer-events: none;
+    color: green;
+}
+    </style>
+</head>
+<body>
+    <!-- <h2>Vikram Kanzariya</h2>
+    <label for="field">Select Field:</label> -->
+
+ 
+
+    <div class="container">
+        <%- include('table') %>
+    </div>
+        
+
+
+    <div class="btn">
+        
+        <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=1"> <<  </a> 
+
+        <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=<%= page - 1 > 0? page - 1 : 1 %>" > < </a>  
+
+        <a class="disabled" href="/data?page=page"><%= page %></a>
+
+        <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%=  page + 1 < lastPage ? page + 1 : lastPage %>"> > </a>
+
+        <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%= lastPage %>"> >> </a> 
+    </div>
+
+
+
+    <!-- <script>
+        let option = document.getElementById('field');
+        let options = option.options;
+
+        option.addEventListener('change' , async()=>{
+            window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${option.value}`;
+        });
+
+        for(let i=0 ; i<options.length ; i++){
+            if(Number(options[i].value[1]) === Number(options[i].dataset.field)){
+                options[i].selected = true;
+                break;
+            }
+        }
+    </script> -->
+
+</body>
+</html>

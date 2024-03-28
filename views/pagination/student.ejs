@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      
+      *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+table{
+    margin: 10px;
+}
+
+table tr th{
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+table tr td{
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    margin:15px 5px;
+    padding: 5px;
+    font-size: 18px;
+    background-color: gray;
+    border: 1px solid black;
+    height: 30px;
+    width: 40px;
+    text-align: center;
+}
+
+.btn{
+    margin: 15px auto;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    margin: 15px;
+}
+
+.disabled{
+    cursor:not-allowed;
+    pointer-events: none;
+    color: green;
+}
+
+svg{
+    height: 12px;
+    width: 12px;
+}
+    </style>
+</head>
+<body>
+    <h2>Vikram Kanzariya</h2>
+
+    <label for="field">Select Field:</label>
+
+    <select name="field" id="field" size="4" style="width: 180px; font-size: 16px; text-align: center;">
+        <optgroup  label="Ascending">
+            <option data-field="<%= field1 %>" value="sid">sid</option>
+            <option data-field="<%= field1 %>" value="fname">fname</option>
+            <option data-field="<%= field1 %>" value="lname">lname</option>
+            <option data-field="<%= field1 %>" value="rollNo">rollNo</option>
+            <option data-field="<%= field1 %>" value="age">age</option>
+            <option data-field="<%= field1 %>" value="phoneNo">phoneNo</option>
+            <option data-field="<%= field1 %>" value="address">address</option>
+            <option data-field="<%= field1 %>" value="city">city</option>
+            <option data-field="<%= field1 %>" value="gender">gender</option>
+            <option data-field="<%= field1 %>" value="pincode">pincode</option>
+            <option data-field="<%= field1 %>" value="createdAt">createdAt</option>
+        </optgroup>
+
+        <optgroup  label="Descending">
+            <option data-field="<%= field1  %>" value="sid desc">sid</option>
+            <option data-field="<%= field1 %>" value="fname desc">fname</option>
+            <option data-field="<%= field1 %>" value="lname desc">lname</option>
+            <option data-field="<%= field1 %>" value="rollNo desc">rollNo</option>
+            <option data-field="<%= field1 %>" value="age desc">age</option>
+            <option data-field="<%= field1 %>" value="phoneNo desc">phoneNo</option>
+            <option data-field="<%= field1 %>" value="address desc">address</option>
+            <option data-field="<%= field1 %>" value="city desc">city</option>
+            <option data-field="<%= field1 %>" value="gender desc">gender</option>
+            <option data-field="<%= field1 %>" value="pincode desc">pincode</option>
+            <option data-field="<%= field1 %>" value="createdAt desc">createdAt</option>
+        </optgroup>
+    </select>
+
+
+    <div class="container">
+        <table>
+            <tr>
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="sid" data-order="<%= order === "ASC"?"DESC":"ASC"%>" 
+                    
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>sid </th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="fname" data-order="<%= order === "ASC"?"DESC":"ASC" %>" 
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>fname</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="lname" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>lname</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="rollNo" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>rollNo
+                </th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="age" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>age</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="phoneNo" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>phoneNo</th> 
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="address" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>address</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="city" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>city</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="gender" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>gender
+                </th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="pincode" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>pincode</th>
+
+                <th data-field="<%= field1 %>" data-orderby="<%= orderBy %>" data-value="createdAt" data-order="<%= order === "ASC"?"DESC":"ASC" %>"
+                    <% if (order === "ASC") { %>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg></p>
+                        <%} else { %>
+                        <p> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg> </p>
+                        <% } %>createdAt</th> 
+
+            </tr>
+
+
+            <% students.forEach((student) => { %>
+                <tr>
+                    <td ><%= student.sid %></td>
+                    <td><%= student.fname %></td>
+                    <td><%= student.lname %></td>
+                    <td><%= student.rollNo %></td>
+                    <td><%= student.age %></td>
+                    <td><%= student.phoneNo %></td>
+                    <td><%= student.address %></td>
+                    <td><%= student.city %></td>
+                    <td><%= student.gender %></td>
+                    <td><%= student.pincode %></td>
+                    <td><%= student.createdAt %></td> 
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+        
+    </ul>
+
+    <div class="btn">
+        
+        <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=1"> <<  </a> 
+
+        <a class="<%= page <= 1 ? 'disabled' : '' %>" href="/data?page=<%= page - 1 > 0? page - 1 : 1 %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>" > < </a>  
+
+        <a class="disabled" href="/data?page=page"><%= page %></a>
+
+        <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%=  page + 1 < lastPage ? page + 1 : lastPage %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>"> > </a>
+
+        <a class="<%= page >= lastPage ? 'disabled' : '' %>" href="/data?page=<%= lastPage %><%= orderBy !== 'sid' ? '&orderBy='+orderBy :"" %>"> >> </a> 
+    </div>
+
+
+    <script>
+        let option = document.getElementById('field');
+        let options = option.options;
+
+        option.addEventListener('change' , async()=>{
+            window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${option.value}`;
+        });
+
+        for(let i=0 ; i<options.length ; i++){
+            if(Number(options[i].value[1]) === Number(options[i].dataset.field1)){
+                options[i].selected = true;
+                break;
+            }
+        }
+
+        let head = document.querySelectorAll('th');
+
+
+
+        head.forEach((hd)=>{
+           
+            hd.addEventListener('click' , ()=>{
+                let data = hd.dataset;
+                let order = data.order;
+                let currorderby = data.orderby;
+                let neworderby = data.value;
+
+                // console.log(hd)
+
+                if(currorderby !== neworderby){
+                    // console.log("hello")
+                    window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${neworderby}&order=ASC` ;
+                }
+                else{console.log(123)
+                    window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${neworderby}&order=${order}` ;
+                }
+            })
+        })
+
+    </script>
+
+</body>
+</html>

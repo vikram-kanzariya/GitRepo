@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+table{
+    margin: 10px;
+}
+
+table tr th{
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+table tr td{
+    border: 2px solid black;
+    margin: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    margin:15px 5px;
+    padding: 5px;
+    font-size: 18px;
+    background-color: gray;
+    border: 1px solid black;
+    height: 30px;
+    width: 40px;
+    text-align: center;
+}
+
+.btn{
+    margin: 15px auto;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    margin: 15px;
+}
+
+.disabled{
+    cursor:not-allowed;
+    pointer-events: none;
+    color: green;
+}
+
+svg{
+    height: 12px;
+    width: 12px;
+}
+
+#mainsearchbar{
+    height: 100px;
+    /* border: 1px solid black; */
+    margin: 15px 40%;
+    text-align: center;
+}
+
+#show{
+    margin: 15px 45%;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 8px;
+    font-size: 14px;
+    /* border: 1px solid black; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#subsearch{
+    height: 250px;
+    margin: 15px 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+}
+
+#subsearch input{
+    margin-bottom: 10px;
+    height: 28px;
+    text-align: center;
+    /* width: 200px; */
+}
+
+#data{
+    width: 300px;
+}
+
+/* #subsearch button{
+} */
+
+#submit{
+    margin-left: 40%;
+    height: 40px;
+    width: 60px;
+}
+
+.tabl1{
+    /* text-align: center; */
+    margin: 0 auto;
+}
+h4{
+    text-align: center;
+    margin: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <h2>Vikram Kanzariya</h2>
+
+  <table class="tabl1">
+    <tr>
+        <td>fname</td>
+        <td>lname</td>
+        <td>phoneNo</td>
+        <td>city</td>
+        <td>address</td>
+    </tr>
+
+    <tr>
+        <td>_</td>
+        <td>^</td>
+        <td>}</td>
+        <td>{</td>
+        <td>:</td>
+    </tr>
+  </table>
+
+
+  <!-- <h4>SearchBar</h4> -->
+
+  <div class="subsearch" id="subsearch">
+        <form action="/delimitedsearch" method="post">
+           
+            <input type="text" id="data" name="data" placeholder="Enter Data..." tabindex="1"> <br>
+            <input type="submit" value="GO" id="submit" name="submit" tabindex="2   ">
+        </form>
+    </div>
+
+
+    <div class="container">
+        <table>
+            <tr>
+                <th>sid </th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>rollNo</th>
+                <th>age</th>
+                <th>phoneNo</th> 
+                <th>address</th>
+                <th>city</th>
+                <th>gender</th>
+                <th>pincode</th>
+                <th>createdAt</th> 
+            </tr>
+
+
+            <% students.forEach((student) => { %>
+                <tr>
+                    <td><%= student.sid %></td>
+                    <td><%= student.fname %></td>
+                    <td><%= student.lname %></td>
+                    <td><%= student.rollNo %></td>
+                    <td><%= student.age %></td>
+                    <td><%= student.phoneNo %></td>
+                    <td><%= student.address %></td>
+                    <td><%= student.city %></td>
+                    <td><%= student.gender %></td>
+                    <td><%= student.pincode %></td>
+                    <td><%= student.createdAt %></td> 
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+        
+  
+ 
+    <!-- <script>
+        // let dt = document.getElementById('data');
+
+    </script> -->
+
+</body>
+</html>
