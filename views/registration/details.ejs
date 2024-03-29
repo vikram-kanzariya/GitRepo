@@ -11,21 +11,36 @@
             box-sizing: border-box;
         }
 
-        h3{
+        h3,h4{
             text-align: center;
-            /* margin: 0 auto; */
             margin-top: 20px;
-            /* margin-left: auto; */
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .container{
             display: flex;
+            /* border: 1px solid black; */
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        table{
+        .buttons a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 8px;
+            margin: 15px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            margin-left: 24%;
+        }
+
+         .buttons a{
+           
             margin-top: 30px;
             padding: 10px;
             font-family: Arial, Helvetica, sans-serif;
@@ -53,12 +68,13 @@
         }
 
         #logout{
-            margin-left: 20%;
+            margin-left: 5%;
             font-size: 14px;
-            padding: 5px;
-            margin-top: 10%;
+            padding: 7px;
+            /* margin-top: 10%;  */
             font-weight: bold;
-            background-color: lightgray;
+            background-color: rgb(33, 33, 48)  ;
+            color: white;
             /* border: 1px solid black; */
             border-radius: 10px;
         }
@@ -66,10 +82,15 @@
         #logout:hover{
             background-color: crimson;
         }
+
+        .buttons a:hover{
+            background-color: gray;
+        }
     </style>
 </head>
 <body>
     <h3>Vikram Kanzariya</h3>
+    <h4>24DEV085</h4>
 
     <input type="button" name="logout" id="logout" value="LOGOUT">
 
@@ -93,7 +114,40 @@
      
         </table>
 
-        <p>Your Login is Successfull</p>
+        <!-- <p>Your Login is Successfull</p> -->
+    </div>
+    <br>
+    <hr>
+
+    <h3>All Tasks</h3>
+    <div class="buttons">
+        <a href="http://localhost:4000/dynamic">Dynamic Table</a>
+        <a href="http://localhost:4000/kukucube">KukuCube</a>
+        <a href="http://localhost:4000/tictactoe">TicTacToe</a>
+        <a href="http://localhost:4000/sort">Sorting</a>
+    </div>
+
+    <br>
+
+    <div class="buttons">
+        <a href="http://localhost:4000/grid">Dynamic Grid</a>
+        <a href="http://localhost:4000/data">Pagination</a>
+        <a href="http://localhost:4000/searchdata">Search</a>
+        <a href="http://localhost:4000/delimitedsearch">Delimited Search</a>
+    </div>
+    <br>
+    <div class="buttons">
+        <a href="http://localhost:4000/attendance">Attendance</a>
+        <a href="http://localhost:4000/result">Result</a>
+        <a href="http://localhost:4000/send">JobApp Create</a>
+        <a href="http://localhost:4000/alluser">JobApp Update</a>
+
+    </div>
+<br>
+    <div class="buttons">
+        <a href="http://localhost:4000/ajax/send">AJAX Create</a>
+        <a href="http://localhost:4000/ajax/users">AJAX Update</a>
+        <a href="http://localhost:4000/events">JS Events</a>
     </div>
 
     
@@ -102,7 +156,7 @@
 
         logout.addEventListener('click' , async function(){
             localStorage.removeItem('token');
-
+            // alert("cgashucgs")
 
             let data = await fetch("http://localhost:4000/logout" , {
                 method:"GET",

@@ -17,26 +17,6 @@
             color: white;
             background-color: black;
         }
-
-        table{
-            margin: 10% auto;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: center;
-            padding: 5px;
-        }
-
-        th{
-            background-color: lightcoral;
-            padding: 8px;
-
-        }
-        td{
-            background-color: lightgray;
-        }
-        td a{
-            /* background-color: orange; */
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -64,13 +44,12 @@
             <td><%= dt.city %></td>
             <td><%= dt.state %></td>
             <td><%= dt.gender %></td>
-            <td><a href="update/<%= dt.candId %>">View</a></td>
+            <td><a href="user/<%= dt.candId %>">View</a></td>
        
         </tr>
        <% }) %>
     </table>
 
-    <p class="msg"></p>
     
 </body>
 </html>

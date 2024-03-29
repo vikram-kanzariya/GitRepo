@@ -1,19 +1,19 @@
 async function getData(){
   let route = window.location.pathname;
-
+console.log(route)
   route = route.split("/");
-  route[1] = "user";
+  console.log(route[3])
+  console.log(`http://localhost:4000/ajax/update/${route[3]}`);
+  // route[1] = "user";
   // route = route.join("/");
-  console.log(route[2])
+  // console.log(route[2])
 
-  console.log("hddhi")
-  // console.log(route);
-  // console.log(`http://localhost:8080${route}`);
 
+  // console.log(route)
   if(route !== "/"){
-    console.log(`http://localhost:4000${route}`)
-    let details = await fetch(`http://localhost:4000${route}` , {
-      method:"GET",
+    // let details = await fetch(`http://localhost:4000/user/${route}` , {
+    let details = await fetch(`http://localhost:4000/ajax/user/${route[3]}` , {
+      method:"GET", 
       headers: { 'Content-Type' : 'application/json' },
     });
 

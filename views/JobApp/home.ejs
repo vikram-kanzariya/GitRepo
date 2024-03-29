@@ -626,9 +626,16 @@
     </div>
 
 
-    <!-- <script src="../public/clientside.js"></script> -->
-   <script src="../public/form.js"></script>
-   <script src="../public/add.js"></script>
+    <script>
+        let btn = document.getElementById('submit');
+        btn.addEventListener('click' , function(){
+            console.log("rohit")
+            window.location.href = "http://localhost:4000/alluser";
+        });
+    </script>
+
+   <script src="../../public/JobApp/form.js"></script>
+   <script src="../../public/JobApp/add.js"></script>
 
 </body>
 </html>

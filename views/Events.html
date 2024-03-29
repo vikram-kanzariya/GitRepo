@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js-Events</title>
+    <!-- <link rel="stylesheet" href="event.css"> -->
+
+    <style>
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} */
+
+tr,  td{
+    border: 1px solid black;
+    padding: 45px 15px;
+}
+
+table{
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table tr:nth-child(odd) td:nth-child(even){
+    background-color: gray;
+}
+
+table tr:nth-child(even) td:nth-child(odd){
+    background-color: gray;
+}
+
+
+    </style>
+
+    <!-- <style>
+            .mydiv{
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+                overflow: scroll;
+            }
+    </style> -->
+</head>
+<!-- <body onafterprint="alert('onAfterPrint is Triggered')"> -->
+    <!-- <body onunload="alert('onUnload is Triggered')"> -->
+<!-- <body onresize="alert('onResize is Triggered')"> -->
+<!-- <body onpageshow="alert('OnPageShow is Triggered')"> -->
+<body onoffline="alert('onOffLine is Triggered')" ononline="alert('onOnLine is Triggered...')">
+<!-- <body onload="alert('onLoad is Triggered')"> -->
+<!-- <body onbeforeprint="alert('onBeforePrint is Triggered')"> -->
+<!-- <body onbeforeunload="alert('onBeforeUnload is Triggered')"> -->
+    
+
+    <div class="container">
+
+    <table>
+        <tr>
+            <td>
+                <button onclick="alert('onClick triggered')">click Me</button>
+            </td>
+
+            <td> <button ondblclick="alert('ondbClick triggered')">double-click Me</button> </td>
+            <td> <p onmousedown="alert('onmousedown triggered')">Click the text!</p>  </td>
+            <td> <p onmousemove="alert('onmousemove triggered')">Move the Mouse</p>  </td>
+            <td> <p onmouseout="alert('onMouseOut triggered')">Move the Mouse</p> </td>
+            <td> <button onmouseover="alert('onmouseover triggered')">Mouse-Over-Me</button> </td>
+            <td> <p onmouseup="alert('onMouseUp triggered')">Up the Mouse</p> </td>
+            <td> <div onwheel="alert('onWheel triggered')">Wheel the Mouse</div> </td>
+        </tr>
+        <tr>
+            <td> <details ontoggle="alert('ontoggle triggered')"> toggle details </td>
+            <td> onKeyDown: <input type="text" onkeydown="alert('onKeyDown triggered')"> </td>
+            <td> onKeyUP: <input type="text" onkeyup="alert('onKeyUp triggered')"> </td>
+            <td> onKeypress: <input type="text" onkeypress="alert('onKeyPress triggered')"> </td>
+            <td> <p oncopy="alert('oncopy triggered')">Copy this text!!</p> </td>
+            <td> <p oncut="alert('onCut triggered')">cut this text!!</p> </td>
+            <td> <p onpaste="alert('onPaste triggered')">Paste this text!!</p></td>
+            <td> fname: <input type="text" name="fname" onfocus="alert('OnFocus triggered...')"> </td>
+        </tr>
+        <tr>
+            <td>
+                <select name="car" id="car" onchange="alert('onchange is triggered...')">
+                    <option value="swift">Swift</option>
+                    <option value="harrier">Harrier</option>
+                    <option value="nexon">Nexon</option>
+                    <option value="rr">RangeRover</option>
+                    <option value="nano">Nano</option>
+                </select>
+            </td>
+
+            <td> <p oncontextmenu="alert('onContextMenu Triggered')">onContextMenu(right click)</p> </td>
+            <td> onBlur:<input type="text" onblur="alert('onBlur Triggered...')"></td>
+            <td> contact: <input type="text" oninput="alert('onInput Triggered...')"> </td>
+            <td> 
+                <form action="">
+                    email: <input type="text" name="email" on oninvalid="alert('onInvalid triggered....')" required> 
+                    <input type="submit" value="Submit"> 
+                 </form> 
+            </td>
+
+            <td>
+                <form action="" onreset="alert('onReset triggered...')">
+                    Name:<input type="text">
+                    <input type="reset">
+                </form>
+            </td>
+
+            <!-- <td> <input type="search" onsearch="alert('onSearch triggered...')"> </td> -->
+            <td> onSelect:<input type="text" onselect="alert('onSelect triggered...')"> </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form action="" onsubmit="alert('onSubmit Triggered...')">
+                    Name:<input type="text" name="" id="">
+                    <input type="submit" value="Submit">
+                </form>
+            </td>
+
+            <td> <p draggable="true" ondrag="alert('ondrag triggered')">Drag-Me</p> </td>
+            <td> <p draggable="true" ondragend="alert('onDragEnd triggered')">DragEnd</p>  </td>
+            <td> <p draggable="true" ondragenter="alert('onDragEnter triggered')">DragEnter</p>  </td>
+            <td> <p draggable="true" ondragleave="alert('ondragleave triggered')">DragLeave</p> </td>
+            <td> <p draggable="true"  ondragover="alert('ondragOver triggered')">onDragOver</p> </td>
+            <td> <p draggable="true"  ondragstart="alert('ondragStart triggered')">onDragStart</p> </td>
+            <td> <p  ondrop="alert('onDrop triggered')">onDrop</p> </td>
+        </tr>
+        <tr>
+            <td>1
+                <!-- <div class="mydiv" onscroll="alert('onScroll Triggered...')">nvteimctqpit,eutxmrxur,x,grrgwvurmw,vwp9</div> -->
+            </td>
+
+
+            <td> OnError:<img src="img.png"  onerror="alert('onError Triggered...')"></td>
+            <td> <h3>Hello World!</h3> </td>
+            <td> <p>Try to resize the browser window.</p> </td>
+            <td> <p>Close this window or press F5 to reload the page.</p> </td>
+            <td> Name:<input type="text" onfocusout="alert('onFocusOut Triggered...')"> </td>
+            <td> Last-Name:<input type="text" onfocusIn="alert('onFocusIn Triggered...')">  </td>
+            <td>8</td>
+        </tr>
+       
+      
+    </table>
+    </div>
+</body>
+</html>

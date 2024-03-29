@@ -20,6 +20,9 @@ router.route("/reset")
 .get(resetPasswordForm)
 .post(upatePassword);
 
+// router.route("/details")
+// .get(authUser , userDetails);
+
 router.route("/details")
 .get(authUser , userDetails);
 

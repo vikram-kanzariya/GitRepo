@@ -11,13 +11,15 @@ const connection = require('./connection');
 const attendance = require('./routes/attendance');
 const result = require('./routes/result');
 const pagination = require('./routes/pagination');
-const register = require('./routes/registration')
+const register = require('./routes/registration');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 app.use(cors({origin:'*'}))
 app.use("/public" , express.static(path.join(__dirname , '/public')));
 
-
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
@@ -27,9 +29,9 @@ app.use("/" , delimited);
 app.use("/" , jobapp);
 app.use("/ajax" , ajax);
 app.use("/grid" , dynamicgrid);
-app.use("/attend" , attendance);
+app.use("/" , attendance);
 app.use("/" , result);
-app.use("/" , pagination);
+app.use("/pagination" , pagination);
 app.use("/" , register);
 
 
@@ -58,7 +60,9 @@ app.get("/sort" , (req , res) => {
     res.sendFile(__dirname  + '/views/sorting.html');
 });
 
-
+app.get("/events" , (req , res) => {
+    res.sendFile(__dirname  + '/views/Events.html');
+});
 
 
 app.listen(4000 , () => {

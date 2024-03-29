@@ -10,7 +10,7 @@ router.route("/searchdata")
 .get(getSearch)
 .post(postData)
 
-router.route('/data')
+router.route('/getuserdata')
 .get(getData)
 
 module.exports = router;

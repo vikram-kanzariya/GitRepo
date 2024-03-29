@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { getForm , getUser ,  geteditForm , createUser , updateUser} = require('../controllers/JobApp/usercontroller');
+const { getForm , getUser ,  geteditForm , createUser , updateUser , getAllUsers} = require('../controllers/JobApp/usercontroller');
 
 const router = express.Router();
 
@@ -14,6 +14,8 @@ router.route("/user/:id")
 router.route("/update")
 .get(geteditForm)
 .post(updateUser)
+
+router.route("/alluser").get(getAllUsers);
 
 // router.route("/")
   

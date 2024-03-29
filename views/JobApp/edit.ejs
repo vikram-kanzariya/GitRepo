@@ -154,7 +154,7 @@
 
                         <td>
                             <label for="dob">DOB: </label>
-                            <input value="<%= data?.dob.toLocaleString().split(",")[0] %>" type="text" name="dob" id="dob" class="valid" placeholder="mm-dd-yyyy">
+                            <input value="<%= data?.dob %>" type="text" name="dob" id="dob" class="valid" placeholder="mm-dd-yyyy">
                         </td>
                     </tr>
                 </table>
@@ -704,9 +704,16 @@
     </div>
 
 
+    <!-- <script>
+        let btn = document.getElementById('submit');
+        btn.addEventListener('click' , function(){
+            window.location.href = "http://localhost:4000/alluser";
+        })
+    </script> -->
+
     <!-- <script src="../public/clientside.js"></script> -->
    <!-- <script src="../public/form.js"></script> -->
-   <script src="../public/add.js"></script>
+   <script src="../../public/JobApp/add.js"></script>
 
 </body>
 </html>

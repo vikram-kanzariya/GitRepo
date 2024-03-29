@@ -492,13 +492,6 @@ exports.getUser = async(req , res) => {
     let workData = await getAllData("workExperience" , id , "candId");
     let languageData = await getAllData("languageDetails" , id , "candId");
     let techData = await getAllData("techKnown" , id , "candId");
-    // console.log(basicData)
-    // console.log(eduData)
-    // console.log(preferenceData)
-    // console.log(referenceData);
-    // console.log(workData);
-    // console.log(languageData);
-    // console.log(techData);
     
     return res.render('JobApp/edit' , { data:basicData[0] , edu:eduData , preference:preferenceData[0] , ref:referenceData , work:workData, language:languageData , tech:techData });
 };
@@ -510,8 +503,8 @@ exports.geteditForm = (req , res)=>{
 
 exports.createUser = async(req , res) =>{
     // ---> Basic Details 
+
   try {
-    
     const { fname , lname , email , add1 , add2 , city , desg , no , state , gender , rs , zip , dob , ssc , hsc , bechlor , master , py1 , py2 , py3 , py4 , percentage1 , percentage2 , percentage3 , percentage4 , 
       company , designation , from , to , 
       hindi , hindiLang , english , englishLang , gujarati , gujaratiLang , php1 , phptech,   mysql1 , mysqltech , laravel1 , laraveltech , oracle1 , oracletech ,
@@ -551,21 +544,21 @@ exports.createUser = async(req , res) =>{
     ) 
     {
       console.log("Please Enter All Data poperly...")
-        res.render('JobApp/home' , {message:'All Fields Are Required...'});
+      return  res.render('JobApp/home' , {message:'All Fields Are Required...'});
     }
 
 
     for(let i=0 ; i<company.length ; i++){
       if( (company[i] && (!designation[i] || !from[i] || !to[i])) || (!company[i] && (designation[i] || from[i] || to[i])) ){
         console.log("Please Enter Company Details Properly...");
-        res.render("JobApp/home");
+       return res.render("JobApp/home");
       }
     }
 
     for(let i=0 ; i<name.length ; i++){
       if((name[i] && (!contact[i] || !relation[i]))  || (!name[i] && (contact[i] || relation[i])) ){
         console.log("Please Enter ReferenceDetails properly...");
-        res.render("JobApp/home");
+       return res.render("JobApp/home");
       }
     }
 
@@ -577,7 +570,7 @@ exports.createUser = async(req , res) =>{
     }
     catch(e){
       console.log(e);
-      res.render('JobApp/home'); 
+     return res.render('JobApp/home'); 
     }
 
     console.log(userId)
@@ -587,7 +580,7 @@ exports.createUser = async(req , res) =>{
     }
     catch(e){
       console.log(e);
-      res.render('JobApp/home'); 
+      return res.render('JobApp/home'); 
     }
 
 
@@ -596,7 +589,7 @@ exports.createUser = async(req , res) =>{
       work = await workDetails(req , res , userId)
     } catch (error) {
         console.log(error);
-        res.render('JobApp/home');
+        return res.render('JobApp/home');
     }
    
 
@@ -604,7 +597,7 @@ exports.createUser = async(req , res) =>{
       reference = await refDetails(req , res , userId);
     } catch (error) { 
       console.log(error);
-      res.render('JobApp/home');
+      return res.render('JobApp/home');
     }    
 
    
@@ -615,7 +608,7 @@ exports.createUser = async(req , res) =>{
       education = await eduDetails(req , res , userId);
     } catch (error) {
       console.log(error);
-      res.render('JobApp/home');
+      return res.render('JobApp/home');
     }
 
    }
@@ -626,7 +619,7 @@ exports.createUser = async(req , res) =>{
     language = langDetails(req, res , userId);
    } catch (error) {
     console.log(error);
-    res.render('JobApp/home');
+    return res.render('JobApp/home');
    }
 
 
@@ -638,17 +631,18 @@ exports.createUser = async(req , res) =>{
 
    } catch (error) {
     console.log(error);
-    res.render('JobApp/home');
+    return res.render('JobApp/home');
    }
 
-
+   return res.redirect('/alluser')
   } 
   catch (error) {
     console.log(error);
     // console.log(error.message);
   }
 
-   
+  //  return res.json({ success:true , message:"User Created Successfully" })
+  
 };
 
 exports.updateUser = async(req , res) => {
@@ -699,7 +693,8 @@ exports.updateUser = async(req , res) => {
            await updateTech(req , res , id);
            await updateEducation(req , res , id);
          
-       return res.redirect(`/user/${id}`);
+      //  return res.redirect(`/user/${id}`);
+      return res.redirect('/alluser')
        // return res.send("Data Updated SuccesFully...");
     } catch (error) {
        return res.json({
@@ -710,3 +705,10 @@ exports.updateUser = async(req , res) => {
        
 };
   
+exports.getAllUsers = async (req, res) => {
+
+  let sql = "select * from candidateDetail limit 30 offset 140";
+  let [result] = await connection.query(sql);
+
+  res.render('JobApp/table', { data: result });
+};

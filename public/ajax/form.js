@@ -633,7 +633,6 @@ var route = window.location.pathname;
 next.addEventListener('click' , async function(e){
     e.preventDefault();
 
-
     if(next.classList.contains("submit")){
         // console.log(route)
 
@@ -643,11 +642,14 @@ next.addEventListener('click' , async function(e){
             for(const pair of new FormData(form)){
                 data.append(pair[0] , pair[1]);
             }
+            console.log("vikram")
 
          
-            if(route == "/send"){
-                console.log(route)
-                let d = await fetch(`http://localhost:4000/ajax${route}` , {
+            // ---> Create User
+            if(route == "/ajax/send"){
+                console.log(`http://localhost:4000${route}`)
+                // alert()
+                let d = await fetch(`http://localhost:4000${route}` , {
                     method:"POST",
                     body:data,
                     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
@@ -655,25 +657,28 @@ next.addEventListener('click' , async function(e){
                 window.location.href = "http://localhost:4000/ajax/users";
             }
             else{
+                // ----> Update
                 console.log(route)
                 // console.log(route[2])
                 // // route = route.split("/");
                 // // console.log(route[1])
                 // route = route.split("/")
-                console.log(`http://localhost:4000/ajax${route}`)
+                console.log(`fghjhttp://localhost:4000${route}`)
 
-                let d = await fetch(`http://localhost:4000/ajax${route}` , {
+                let d = await fetch(`http://localhost:4000${route}` , {
                     method:"POST",
                     body:data,
                     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
                 });  
-                // window.open('/users' , "_self");                
-                setTimeout(() => {
+
+                // if(d.success){
                     window.location.href = "http://localhost:4000/ajax/users";
 
-                }, 1000);                
+                    let msg =  document.querySelector('.msg');
+                    msg.innerHTML = "Data Updated Successfully"
+                // }
 
-                console.log(d.body);
+                // console.log(d.body);
             }
           
             // let d = await fetch("http://localhost:8080/send" , {

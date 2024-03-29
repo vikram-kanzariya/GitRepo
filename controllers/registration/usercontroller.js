@@ -10,10 +10,13 @@ function isValidEmail(email) {
 }
 
 exports.authUser = (req , res, next) => {
+
     let token = req.cookies?.token || req.body?.token ;
+
 
     if(!token){
         return res.redirect('/login');
+        // return res.render('registration/login');
     }
     else{
         let decoded = jwt.verify(token , "abcdef" , { expiresIn : '1h' });
@@ -190,7 +193,8 @@ exports.LoginUser = async(req , res) => {
 
     if(await bcrypt.compare(EnteredPassword , userPassword)){
         console.log('Login Success')
-        return res.cookie('token' , token).json({
+        // , { maxAge: 3600 , httpOnly:true}
+        return res.cookie('token' , token ).json({
             success:true,
             message:"Login success",
             uid:id,
