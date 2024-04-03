@@ -1,8 +1,6 @@
-// const connection = require('../db');
 const connection = require('../../connection');
 
 exports.getGrid =  async(req , res)=>{
-    // const PageCount = 100;
     let [result] = await connection.query("select count(*) as totalRecord from studentMaster;");
 
     let recordShown = 100;
@@ -14,10 +12,7 @@ exports.getGrid =  async(req , res)=>{
 
     let lastPage = Math.floor(totalRecord / recordShown);
 
-    // let sql = "select * from studentMaster limit ? , ?;";
     let field1 = `select * from studentMaster order by ${orderBy} ${order} limit ? , ?`;
-    // let field1 = `select * from studentMaster order by ${orderBy}  limit ? , ?`;
-
 
     let page = Number(req.query.page) || 1;
 
@@ -33,10 +28,7 @@ exports.getGrid =  async(req , res)=>{
     }
     offset = offset * recordShown;
 
-    
-    // Query Runs here
     [result] = await connection.query( field1 , [offset , recordShown]);
-    // [result] = await connection.query(field2 , [orderBy , offset , recordShown]);
 
     return res.render('pagination/student' , { students:result , page:page , lastPage:lastPage  , orderBy , field1 , order })
 };

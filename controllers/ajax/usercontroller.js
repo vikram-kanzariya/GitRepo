@@ -500,49 +500,47 @@ exports.createUser = async (req, res) => {
       name, contact, relation,
       location, np, expected, curr, dept } = req.body;
 
+    if (
+      !fname || !lname ||
+       !email || !add1 || !add2 || !city || 
+      !desg || !no || !state || !gender || !rs || !zip || !dob || 
+      !ssc || !hsc || !bechlor || !master || !py1 || !py2 || !py3 || !py4 || !percentage1 || !percentage2 || !percentage3 || !percentage4 || 
+      !hindi || !hindiLang || !english || !englishLang || !gujarati || !gujaratiLang || !php1 || !phptech || !mysql1 || !mysqltech || !laravel1 || !laraveltech || !oracle1 || !oracletech ||
+
+      (hindi && !hindiLang) || (english && !englishLang) || (gujarati && gujaratiLang) ||
+      (!hindi && hindiLang) || (!english && englishLang) || (!gujarati && gujaratiLang) ||
 
 
-    // if (
-    //   !fname || !lname ||
-    //    !email || !add1 || !add2 || !city || 
-    //   !desg || !no || !state || !gender || !rs || !zip || !dob || 
-    //   !ssc || !hsc || !bechlor || !master || !py1 || !py2 || !py3 || !py4 || !percentage1 || !percentage2 || !percentage3 || !percentage4 || 
-    //   !hindi || !hindiLang || !english || !englishLang || !gujarati || !gujaratiLang || !php1 || !phptech || !mysql1 || !mysqltech || !laravel1 || !laraveltech || !oracle1 || !oracletech ||
 
-    //   (hindi && !hindiLang) || (english && !englishLang) || (gujarati && gujaratiLang) ||
-    //   (!hindi && hindiLang) || (!english && englishLang) || (!gujarati && gujaratiLang) ||
+       !location || !np || !expected || !curr || !dept ||
 
-   
 
-    //    !location || !np || !expected || !curr || !dept ||
+      (ssc && (!py1 || !percentage1)) || (!ssc && (py1 || percentage1)) || (hsc && (!py2 || !percentage2)) || (!hsc && (py2 || percentage2)) || (bechlor && (!py3 || !percentage3)) || (!bechlor && (py3 || percentage3)) || (master && (!py4 || !percentage4)) || (!master && (py4 || percentage4)) ||
+      (master && (!ssc || !hsc || !bechlor)) || (bechlor && (!ssc || !hsc)) ||
+      (hsc && !ssc) || (ssc && !hsc) || (master && !bechlor) ||
 
-   
-    //   (ssc && (!py1 || !percentage1)) || (!ssc && (py1 || percentage1)) || (hsc && (!py2 || !percentage2)) || (!hsc && (py2 || percentage2)) || (bechlor && (!py3 || !percentage3)) || (!bechlor && (py3 || percentage3)) || (master && (!py4 || !percentage4)) || (!master && (py4 || percentage4)) ||
-    //   (master && (!ssc || !hsc || !bechlor)) || (bechlor && (!ssc || !hsc)) ||
-    //   (hsc && !ssc) || (ssc && !hsc) || (master && !bechlor) ||
-
-    //   (no.length != 10) || (email && !validateEmail(email)) || (zip.length != 6) ||
-    //   (mysql1 && !mysqltech) || (!mysql1 && mysqltech) || (php1 && !phptech) || (!php1 && phptech) || (oracle1 && !oracletech) || (!oracle1 && oracletech) || (laravel1 && !laraveltech) || (!laravel1 && laraveltech) 
-    //   // (dob && !isValidDate(dob))
-    // ) {
-    //   console.log("Please Enter All Data poperly...")
-    //   console.log(req.body)
-    //   return res.render('ajax/home', { message: 'All Fields Are Required...' });
-    // }
+      (no.length != 10) || (email && !validateEmail(email)) || (zip.length != 6) ||
+      (mysql1 && !mysqltech) || (!mysql1 && mysqltech) || (php1 && !phptech) || (!php1 && phptech) || (oracle1 && !oracletech) || (!oracle1 && oracletech) || (laravel1 && !laraveltech) || (!laravel1 && laraveltech) ||
+      (dob && !isValidDate(dob))
+    ) {
+      console.log("Please Enter All Data poperly...")
+      console.log(req.body)
+      return res.render('ajax/home', { message: 'All Fields Are Required...' });
+    }
 
 
     for (let i = 0; i < company.length; i++) {
       if ((company[i] && (!designation[i] || !from[i] || !to[i])) || (!company[i] && (designation[i] || from[i] || to[i]))) {
         console.log("Please Enter Company Details Properly...");
         // res.render("home");
-        return res.json({message:"please Enter all details Properly"});
+        return res.json({ message: "please Enter all details Properly" });
       }
     }
 
     for (let i = 0; i < name.length; i++) {
       if ((name[i] && (!contact[i] || !relation[i])) || (!name[i] && (contact[i] || relation[i]))) {
         console.log("Please Enter ReferenceDetails properly...");
-        return res.json({message:"Please Enter ReferenceDetails properly..."});
+        return res.json({ message: "Please Enter ReferenceDetails properly..." });
 
         // res.render("home");
       }
@@ -652,7 +650,6 @@ exports.getEditForm = (req, res) => {
 //   Update
 exports.updateById = async (req, res) => {
   try {
-    console.log("Hello vwopl")
     const { refid, workid, fname, lname, email, add1, add2, city, desg, no, state, gender, rs, zip, dob, ssc, hsc, bechlor, master, py1, py2, py3, py4, percentage1, percentage2, percentage3, percentage4,
       company, designation, from, to,
       hindi, hindiLang, english, englishLang, gujarati, gujaratiLang, php1, phptech, mysql1, mysqltech, laravel1, laraveltech, oracle1, oracletech,
@@ -661,7 +658,6 @@ exports.updateById = async (req, res) => {
 
     let id = req.params.id;
 
-    //  console.log("Hello vwopl")
     //  console.log(fname)
     //  console.log(refid)
 
@@ -699,11 +695,9 @@ exports.updateById = async (req, res) => {
       (master && (!ssc || !hsc || !bechlor)) || (bechlor && (!ssc || !hsc))
 
     ) {
-      //  console.log(lname);
       console.log("Please Enter All Data poperly...")
       return res.json({ message: 'All Fields Are Required...' });
     }
-
 
     await updateCandidate(req, res, id);
     await updatePreference(req, res, id);
@@ -717,7 +711,6 @@ exports.updateById = async (req, res) => {
 
     console.log("Data Updated Successfully");
     return res.json({ message: "Data Updated Successfully" });
-    // return res.redirect('/users');
   }
 
   catch (error) {

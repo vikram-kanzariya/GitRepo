@@ -16,7 +16,5 @@ router.route("/update")
 .post(updateUser)
 
 router.route("/alluser").get(getAllUsers);
-
-// router.route("/")
   
 module.exports = router;

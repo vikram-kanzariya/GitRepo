@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostDetails</title>
+    <link rel="stylesheet" href="../../public/jsonplaceholder/style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="data">
+
+        </div>
+
+        <div class="comment"></div>
+    </div>
+
+
+    <script>
+
+        const showPost = async() => {
+            let id = window.location.pathname.split("/");  //id = ["posts" , 1] , ["posts" , 2] , ...
+            id = id[id.length - 1];
+
+            let post = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}` , {
+                method:"GET",
+                headers:{ 'Content-Type': 'application/json' }
+            });
+            post = await post.json();
+
+            let table = 
+                `
+                    <table border=1> 
+                        <tr>
+                            <th>UserId</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Comments</th>
+                        </tr> 
+
+                        <tr>
+                            <td>${post.userId}</td>
+                            <td>${post.title}</td>
+                            <td>${post.body}</td>
+                            <td> <button onclick="commentsId(${post.id})"> View Comment </button> </td>
+                        </tr> 
+                    </table> `;
+
+            let div = document.querySelector('.data');
+            div.innerHTML = table;
+                
+            return post;
+        }
+
+
+        const commentsId = async(id) => {
+            let comments = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}` , {
+                    method:"GET",
+                    headers:{ 'Content-Type': 'application/json' }
+                });
+                comments = await comments.json();
+
+                // console.log(comments);
+                
+                let cm = comments.map((c) => {
+                    return `
+                        <div> 
+                            <p class="name">Name: ${c.name} </p>
+                            <br>
+                            <p class="desc">Comment: ${c.body} </p>
+                        </div>
+                    `;
+                });
+                let code = cm.join(""); // Joins all commentname and description in array
+
+                let div = document.querySelector(".comment");
+                div.innerHTML = code;
+            }
+
+
+    //  <td> ${comment.body} </td>
+
+        var data;
+        ; (
+            async function call(){
+                data = await showPost();
+                // getData();
+            }
+        )();
+    </script>
+
+</body>
+</html>

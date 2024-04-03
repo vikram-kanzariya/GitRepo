@@ -22,7 +22,6 @@ const candidateDetails = async(req , res) => {
   
     let [result] = await connection.query(sql , [values]);
   
-    // console.log(result);
     let id = result.insertId;
   
     return id;
@@ -64,14 +63,6 @@ const eduDetails = async(req , res , id) => {
     const ME =  [id , "6" , "master" ,  master , py4 , percentage4 ];
   
     let sql = "insert into educationDetail(candId , sId , degree , coursename , passingYear , percentage) values (?) ";
-  
-    // let eduData = [SSC , HSC , BE , ME];
-    // for(let i=0 ; i<eduData.length ; i++){
-    //   if(eduData[i].includes("ssc") || eduData[i].includes("hsc") || !eduData[i].includes("")){
-    //     [result] = await connection.query(sql , eduData[i]);
-    //   }
-    // }
-    // return result;
   
   
     if(master){
@@ -435,15 +426,11 @@ const updateTech = async(req , res , id) => {
       // console.log(php1)
       let phpData = { "techName":php1 , "level":phptech  };
     
-      [result] = await connection.query(sql , [phpData , id , "php"]);
-      // console.log(1,result);
-  
+      [result] = await connection.query(sql , [phpData , id , "php"]);  
     }
    
     if(mysql1 != undefined){
-      // console.log(php1)
       let mysqlData = { "techName":mysql1 , "level":mysqltech  };
-    
       [result] = await connection.query(sql , [mysqlData , id , "mysql"]);
       // console.log(2,result);
     }
@@ -452,21 +439,15 @@ const updateTech = async(req , res , id) => {
       // console.log(php1)
       let oracleData = { "techName":oracle1 , "level":oracletech  };
     
-      [result] = await connection.query(sql , [oracleData , id , "oracle"]);
-      // console.log(3,result);
-  
+      [result] = await connection.query(sql , [oracleData , id , "oracle"]);  
     }
    
     if(laravel1 != undefined){
-      // console.log(php1)
       let laravelData = { "techName":laravel1 , "level":laraveltech  };
-    
       [result] = await connection.query(sql , [laravelData , id , "laravel"]);
       // console.log(4,result);
   
-    }
-    // console.log(result);
-  
+    }  
     return result;
   }
   
@@ -503,7 +484,6 @@ exports.geteditForm = (req , res)=>{
 
 exports.createUser = async(req , res) =>{
     // ---> Basic Details 
-
   try {
     const { fname , lname , email , add1 , add2 , city , desg , no , state , gender , rs , zip , dob , ssc , hsc , bechlor , master , py1 , py2 , py3 , py4 , percentage1 , percentage2 , percentage3 , percentage4 , 
       company , designation , from , to , 
@@ -535,12 +515,6 @@ exports.createUser = async(req , res) =>{
     (no.length != 10) || (email && !validateEmail(email)) || (zip.length != 6)  ||   
     (mysql1 && !mysqltech) || (!mysql1 && mysqltech) || (php1 && !phptech) || (!php1 && phptech) || (oracle1 && !oracletech) || (!oracle1 && oracletech) || (laravel1 && !laraveltech) || (!laravel1 && laraveltech) || 
     (dob && !isValidDate(dob)) 
-      // (company1 && (!designation1 || !from1 || !to1)) || 
-      // (company2 && (!designation2 || !from2 || !to2)) || 
-      // (company3 && (!designation3 || !from3 || !to3)) ||
-      // (!company1 && (designation1 || from1 || to1)) ||
-      // (!company2 && (designation2 || from2 || to2)) || 
-      // (!company3 && (designation3 || from3 || to3))
     ) 
     {
       console.log("Please Enter All Data poperly...")
@@ -561,7 +535,6 @@ exports.createUser = async(req , res) =>{
        return res.render("JobApp/home");
       }
     }
-
 
     let userId , preference , work , reference , education , language , technology;
 
@@ -637,11 +610,8 @@ exports.createUser = async(req , res) =>{
    return res.redirect('/alluser')
   } 
   catch (error) {
-    console.log(error);
-    // console.log(error.message);
+    console.log(new Error(error));
   }
-
-  //  return res.json({ success:true , message:"User Created Successfully" })
   
 };
 
@@ -681,7 +651,6 @@ exports.updateUser = async(req , res) => {
         ) 
          {
            console.log("Please Enter All Data poperly...")
-          //  console.log("This is Error")
            return  res.render('JobApp/edit' , { message:'All Fields Are Required...' });
          }
   
@@ -693,9 +662,7 @@ exports.updateUser = async(req , res) => {
            await updateTech(req , res , id);
            await updateEducation(req , res , id);
          
-      //  return res.redirect(`/user/${id}`);
       return res.redirect('/alluser')
-       // return res.send("Data Updated SuccesFully...");
     } catch (error) {
        return res.json({
          success:false,
@@ -706,9 +673,12 @@ exports.updateUser = async(req , res) => {
 };
   
 exports.getAllUsers = async (req, res) => {
+  try {
+    let sql = "select * from candidateDetail limit 30 offset 140";
+    let [result] = await connection.query(sql);
 
-  let sql = "select * from candidateDetail limit 30 offset 140";
-  let [result] = await connection.query(sql);
-
-  res.render('JobApp/table', { data: result });
+    res.render('JobApp/table', { data: result });
+  } catch (error) {
+      console.log(new Error(error))
+  }
 };

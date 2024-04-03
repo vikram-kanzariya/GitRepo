@@ -5,6 +5,7 @@ const searchRoute = require('./routes/Searchroute');
 const delimited = require('./routes/delimited');
 const jobapp = require('./routes/JobApproute');
 const dynamicgrid = require('./routes/dynamicgrid');
+const jsonplaceholder = require('./routes/jsonplaceholder')
 const ajax = require('./routes/ajax');
 const cors = require('cors');
 const connection = require('./connection');
@@ -13,11 +14,16 @@ const result = require('./routes/result');
 const pagination = require('./routes/pagination');
 const register = require('./routes/registration');
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+require('dotenv').config();
 
 
 const app = express();
 app.use(cors({origin:'*'}))
 app.use("/public" , express.static(path.join(__dirname , '/public')));
+
+const port = process.env.PORT;
+
 
 app.use(cookieParser())
 app.use(express.json());
@@ -33,7 +39,7 @@ app.use("/" , attendance);
 app.use("/" , result);
 app.use("/pagination" , pagination);
 app.use("/" , register);
-
+app.use("/" , jsonplaceholder);
 
 
 app.set("view engine" , "ejs");
@@ -65,7 +71,7 @@ app.get("/events" , (req , res) => {
 });
 
 
-app.listen(4000 , () => {
-    console.log('Listening on Port: 4000');
+app.listen(port , () => {
+    console.log(`Listening on Port: ${port}`);
 });
 
