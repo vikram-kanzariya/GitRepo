@@ -25,9 +25,10 @@
     height: 50%;
 }
 
-.form input{
+.form input, label{
     margin: 7px;
     font-size: 15px;
+    font-weight: bold;
     /* text-align: center; */
 }
 

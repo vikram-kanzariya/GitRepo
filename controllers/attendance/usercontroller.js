@@ -3,7 +3,7 @@ const connection = require('../../connection');
 
 exports.getAttendance = async(req , res)=>{
     let [result] = await connection.query("select count(*) as totalRecord from studentMaster;");
-
+ 
     let recordShown = 50;
 
     let filter = req.query.filter || '2023-12-31'; 
