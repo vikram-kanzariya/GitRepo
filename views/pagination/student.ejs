@@ -95,17 +95,17 @@ svg{
         </optgroup>
 
         <optgroup  label="Descending">
-            <option data-field="<%= field1  %>" value="sid desc">sid</option>
-            <option data-field="<%= field1 %>" value="fname desc">fname</option>
-            <option data-field="<%= field1 %>" value="lname desc">lname</option>
-            <option data-field="<%= field1 %>" value="rollNo desc">rollNo</option>
-            <option data-field="<%= field1 %>" value="age desc">age</option>
-            <option data-field="<%= field1 %>" value="phoneNo desc">phoneNo</option>
-            <option data-field="<%= field1 %>" value="address desc">address</option>
-            <option data-field="<%= field1 %>" value="city desc">city</option>
-            <option data-field="<%= field1 %>" value="gender desc">gender</option>
-            <option data-field="<%= field1 %>" value="pincode desc">pincode</option>
-            <option data-field="<%= field1 %>" value="createdAt desc">createdAt</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="sid">sid</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="fname">fname</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="lname">lname</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="rollNo">rollNo</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="age">age</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="phoneNo">phoneNo</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="address">address</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="city">city</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="gender">gender</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="pincode">pincode</option>
+            <option data-field="<%= field1 %>" data-order="<%= order %>" value="createdAt">createdAt</option>
         </optgroup>
     </select>
 
@@ -232,11 +232,15 @@ svg{
 
 
     <script>
+
+        // ----> for Select and Options <---
         let option = document.getElementById('field');
         let options = option.options;
 
         option.addEventListener('change' , async()=>{
-            window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${option.value}`;
+            
+            window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${option.value}&order=${option.dataset.order === 'ASC'? 'DESC' : 'ASC' }`;
+            console.log(option.dataset.order)
         });
 
         for(let i=0 ; i<options.length ; i++){
@@ -246,9 +250,10 @@ svg{
             }
         }
 
+
+
+        // ---> Selecting Icons <---
         let head = document.querySelectorAll('th');
-
-
 
         head.forEach((hd)=>{
            
@@ -258,13 +263,10 @@ svg{
                 let currorderby = data.orderby;
                 let neworderby = data.value;
 
-                // console.log(hd)
-
                 if(currorderby !== neworderby){
-                    // console.log("hello")
                     window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${neworderby}&order=ASC` ;
                 }
-                else{console.log(123)
+                else{
                     window.location.href = window.location.origin + window.location.pathname + `?page=1&orderBy=${neworderby}&order=${order}` ;
                 }
             })

@@ -14,9 +14,7 @@ exports.postSearch = async (req, res) => {
     try {
 
         let fname = [], lname = [], phoneNo = [], address = [], city = [];
-        // str = "_vikram^kanzariya}9265645799{halvad:kharivadi";
         let str = req.body.data?.trim();
-
 
         // split string and add data into arrays 
         let i = 0;

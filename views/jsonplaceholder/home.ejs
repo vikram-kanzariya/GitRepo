@@ -44,7 +44,6 @@
             data = await data.json();
             return data;
         };
-        // console.log(fetchData())
 
         const getPosts = async(data , page = 1) => {
             let dataperPage = 10;
@@ -53,8 +52,6 @@
             let totalrecords = data.length;
             // console.log("Total Records are: " + totalrecords);
             var lastPage = Number(data.length) / dataperPage;
-            // console.log("LastPage = " + lastPage);
-
 
             let d = data.slice(offset , offset + dataperPage);
 
@@ -64,7 +61,7 @@
                        <td>${post.userId}</td>
                        <td>${post.title}</td>
                        <td>${post.body}</td>
-                       <td>  <a href="/posts/${post.id}"> VIEW </a> </td>
+                       <td>  <a href="/json/posts/${post.id}"> VIEW </a> </td>
                        </tr> `;
                 });
 
@@ -80,8 +77,7 @@
                             </tr> 
                             ` + d.join("") + `
                         </table>
-                    `
-
+                    `;
 
                 let div = document.querySelector(".table-data");
                 div.innerHTML = table;
@@ -94,8 +90,6 @@
         }
 
         
-        
-
         // Search Function
         let search = document.getElementById('search');
         let submit = document.getElementById('submit');
@@ -115,12 +109,6 @@
                 getPosts(data);
             }
         });
-
-
-        // fetchData();
-        // let dt = await fetchData();
-        // getPosts(dt , 1)
-
 
         // ---> For Pagination <---
         let prev = document.querySelector('.prev');

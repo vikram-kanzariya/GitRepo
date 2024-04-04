@@ -8,8 +8,6 @@ exports.getAttendance = async (req, res) => {
         let recordShown = 50;
 
         let filter = req.query.filter || '2023-12-31';
-        // let month = req.query.month || 12;
-        // let days = req.query.days || 31;
 
         let totalRecord = result[0].totalRecord;
 

@@ -80,14 +80,6 @@ const validateEmail = (email) => {
         }
 
 
-    //    if(!isValidDate(dob)){
-    //         a = false;
-    //         event.preventDefault()
-    //         error.innerHTML = "Date is Not Valid..."
-    //         // return false;
-    //    }
-        
-
         // ---> For Selecting States <---
         var state = document.getElementById('state');
         if(document.jobapp.state.selectedIndex == ""){
@@ -229,6 +221,16 @@ const validateEmail = (email) => {
         var speak3 = document.getElementById('speak3');
 
         var langErr = document.getElementById('langErr');
+
+        if(read1.checked === true || write1.checked === true || speak1.checked === true){
+            hindi.checked = true;
+        }
+        if(read2.checked === true || write2.checked === true || speak2.checked === true){
+            english.checked = true;
+        }
+        if(read3.checked === true || write3.checked === true || speak3.checked === true){
+            gujarati.checked = true;
+        }
 
         // ---> for Language Selection
         if(!hindi.checked && !english.checked && !gujarati.checked){
@@ -659,10 +661,7 @@ next.addEventListener('click' , async function(e){
             else{
                 // ----> Update
                 console.log(route)
-                // console.log(route[2])
-                // // route = route.split("/");
-                // // console.log(route[1])
-                // route = route.split("/")
+            
                 console.log(`fghjhttp://localhost:4000${route}`)
 
                 let d = await fetch(`http://localhost:4000${route}` , {
@@ -671,29 +670,11 @@ next.addEventListener('click' , async function(e){
                     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
                 });  
 
-                // if(d.success){
                     window.location.href = "http://localhost:4000/ajax/users";
 
                     let msg =  document.querySelector('.msg');
                     msg.innerHTML = "Data Updated Successfully"
-                // }
-
-                // console.log(d.body);
             }
-          
-            // let d = await fetch("http://localhost:8080/send" , {
-            //     method:"POST",
-            //     body:data,
-            //     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
-            // });
-
-            // console.log(await d.json());
-
-            // form.children.item(i).style.display = "none";
-            // form.reset();
-            // next.value = 'next';
-            // prev.style.visibility = 'hidden';
-            // i = 0;
         }
     }
 

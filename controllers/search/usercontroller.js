@@ -12,6 +12,11 @@ exports.getSearchbar = async(req , res)=>{
     let offset = page - 1 >= 0 ? page-1:0;
     offset = offset * recordShown;
 
+    // let offset = 0;
+    // if(page - 1 >= 0){
+    //     offset = (page-1) * recordShown;
+    // }
+
     let id = req.body.id;
     let fname = req.body.fname;
     let lname = req.body.lname;
@@ -35,12 +40,7 @@ exports.getSearch = async(req , res)=>{
 
     let field1 = `select * from studentMaster order by ${orderBy} ${order} limit ? , ?`;
 
-
     let page = Number(req.query.page) || 1;
-
-    // ---> Ternary Operator <---
-    // let offset = page - 1 >= 0 ? page-1:0;
-    // offset = offset * recordShown;
 
     if(page - 1 >= 0){
         offset = page-1;
@@ -148,8 +148,6 @@ exports.getData = async(req , res)=>{
 
   // let sql = "select * from studentMaster limit ? , ?;";
   let field1 = `select * from studentMaster order by ${orderBy} ${order} limit ? , ?`;
-  // let field1 = `select * from studentMaster order by ${orderBy}  limit ? , ?`;
-
 
   let page = Number(req.query.page) || 1;
 

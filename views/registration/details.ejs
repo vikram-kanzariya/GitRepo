@@ -121,24 +121,24 @@
 
     <h3>All Tasks</h3>
     <div class="buttons">
-        <a href="http://localhost:4000/dynamic">Dynamic Table</a>
-        <a href="http://localhost:4000/kukucube">KukuCube</a>
-        <a href="http://localhost:4000/tictactoe">TicTacToe</a>
-        <a href="http://localhost:4000/sort">Sorting</a>
+        <a href="http://localhost:4000/jstask/dynamic">Dynamic Table</a>
+        <a href="http://localhost:4000/jstask/kukucube">KukuCube</a>
+        <a href="http://localhost:4000/jstask/tictactoe">TicTacToe</a>
+        <a href="http://localhost:4000/jstask/sort">Sorting</a>
     </div>
 
     <br>
 
     <div class="buttons">
-        <a href="http://localhost:4000/post">Dynamic Grid</a>
+        <a href="http://localhost:4000/grid/post">Dynamic Grid</a>
         <a href="http://localhost:4000/pagination/data">Pagination</a>
         <a href="http://localhost:4000/searchdata">Search</a>
-        <a href="http://localhost:4000/delimitedsearch">Delimited Search</a>
+        <a href="http://localhost:4000/delimited/delimitedsearch">Delimited Search</a>
     </div>
     <br>
     <div class="buttons">
-        <a href="http://localhost:4000/attendance">Attendance</a>
-        <a href="http://localhost:4000/result">Result</a>
+        <a href="http://localhost:4000/attendance/attendance">Attendance</a>
+        <a href="http://localhost:4000/result/result">Result</a>
         <a href="http://localhost:4000/send">JobApp Create</a>
         <a href="http://localhost:4000/alluser">JobApp Update</a>
 
@@ -147,8 +147,8 @@
     <div class="buttons">
         <a href="http://localhost:4000/ajax/send">AJAX Create</a>
         <a href="http://localhost:4000/ajax/users">AJAX Update</a>
-        <a href="http://localhost:4000/events">JS Events</a>
-        <a href="http://localhost:4000/posts">Json PlaceHolder</a>
+        <a href="http://localhost:4000/jstask/events">JS Events</a>
+        <a href="http://localhost:4000/json/posts">Json PlaceHolder</a>
     </div>
 
     
@@ -157,7 +157,6 @@
 
         logout.addEventListener('click' , async function(){
             localStorage.removeItem('token');
-            // alert("cgashucgs")
 
             let data = await fetch("http://localhost:4000/logout" , {
                 method:"GET",

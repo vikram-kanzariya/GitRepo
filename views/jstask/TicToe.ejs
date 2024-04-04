@@ -124,7 +124,6 @@
 
     </div>
 
-  
     <!-- <script src="tictoe.js"></script> -->
 
     <script>
@@ -157,8 +156,6 @@
                 let isWinner = chekwin();
 
                 if(count === 9 && !isWinner){
-                    // alert('game is draw');
-                    // console.log('game is draw');
                     drawGame();
                     disableBoxes();
                 }
@@ -166,17 +163,15 @@
             });
         });
 
-
+        
         const chekwin = () => {
             for(let pattern of winPossibility){
                 var pos1Val = btns[pattern[0]].innerHTML;
                 var pos2Val = btns[pattern[1]].innerHTML;
                 var pos3Val = btns[pattern[2]].innerHTML;
 
-
                 if(pos1Val !== "" && pos2Val !== "" && pos3Val !== ""){
                     if(pos1Val === pos2Val && pos2Val === pos3Val){
-                        // message.innerText = pos1Val;
                         showWinner(pos1Val);
                         return true;
                     }
@@ -213,7 +208,6 @@
         }
 
         const drawGame = () => {
-            // alert('Game is Draw...');
             message.innerHTML = `No winner Found , Game is Draw...`;
             disableBoxes();
         }

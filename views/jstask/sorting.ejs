@@ -95,20 +95,9 @@
         var output = document.getElementById('output');
         var clr = document.getElementById('clr');
 
-        // let input = document.getElementById('val').value;
-        // clr.addEventListener('click' , ()=>{
-        //     input = ""
-        // })
-
-
         bubble.addEventListener('click' , function(){
             var input1 = document.getElementById('val').value;
             const arr1 = input1.split(",");
-
-
-            // for(let i=0 ; i<arr1.length ; i++){
-            //     arr1[i] = +arr1[i];
-            // }
 
             // Bubble Sort
             for(let i=0 ; i<arr1.length ; i++){
@@ -120,10 +109,8 @@
                     }
                 }
             }
-        output.innerHTML = arr1 + " "; 
+            output.innerHTML = arr1 + " "; 
         });
-
-
 
         selection.addEventListener('click' , function(){
             var input1 = document.getElementById('val').value;
@@ -155,7 +142,6 @@
             output.innerHTML = arr1 + " "; 
         });
 
-
         insertion.addEventListener('click' , () => {
             var input1 = document.getElementById('val').value;
             const arr1 = input1.split(",");
@@ -179,9 +165,6 @@
             }
             output.innerHTML = arr1;
         });
-
-
-
 
 
         // let arr1 = [6 , 7 , 3 , 8 , 11 , 13 , 5 , 43 , 25];
@@ -319,12 +302,7 @@
         let arr = [9, 3, 4, 2, 1, 8 ];
 
         let n = arr.length;
-
         // quickSort(arr , 0 , n-1);
-
-        // for(let i=0 ; i<n ; i++){
-        //     console.log(arr[i]);
-        // }
     </script>
 </body>
 </html>

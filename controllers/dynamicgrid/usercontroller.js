@@ -8,7 +8,7 @@ exports.getData = (req, res) => {
 exports.allData = (async (req, res) => {
     try {
         let recordtoShow = 50;
-        let sql = req.body.query;
+        let sql = req.body.query || req.cookies.query;
 
         if (!sql) {
             return res.render('dynamicgrid/input', { page: 1, data: [], lastPage: null });
@@ -30,7 +30,7 @@ exports.allData = (async (req, res) => {
 
         [result] = await connection.query(query, [offset, recordtoShow]);
 
-        return res.cookie(`query`, sql).render('dynamicgrid/input', { data: result, page, lastPage, offset, totlRecord, sql, field: 1 });
+        return res.cookie(`query`, sql , { maxAge: 60000 }).render('dynamicgrid/input', { data: result, page, lastPage, offset, totlRecord, sql, field: 1 });
     } catch (error) {
         console.log(new Error(error));
     }

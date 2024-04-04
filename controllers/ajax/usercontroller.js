@@ -557,7 +557,7 @@ exports.createUser = async (req, res) => {
       return res.render('ajax/home');
     }
 
-    console.log(userId)
+    // console.log(userId)
 
     try {
       preference = await preferenceDetails(req, res, userId);
@@ -611,7 +611,8 @@ exports.createUser = async (req, res) => {
         technology = await techDetails(req, res, userId);
       }
 
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
       return res.render('ajax/home');
     }
@@ -639,7 +640,6 @@ exports.getUserById = async (req, res) => {
   let languageData = await getAllData("languageDetails", id, "candId");
   let techData = await getAllData("techKnown", id, "candId");
 
-  // return res.render('table' , { data:basicData[0]  });
   return res.json({ data: basicData[0], edu: eduData, preference: preferenceData[0], ref: referenceData, work: workData, language: languageData, tech: techData });
 };
 
